@@ -1,5 +1,5 @@
 import Head from "next/head";
-import ContentfulApi from "@ctfl/Api";
+import ContentfulApi from "@ctfl/api";
 import StreamersGrid from "@components/StreamersGrid";
 
 export default function Index({ streamers }) {
