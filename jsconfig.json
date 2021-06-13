@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@ctfl/*": ["lib/ctfl/*"],
+      "@styles/*": ["styles/*"],
+      "@twitch/*": ["lib/twitch/*"]
+    }
+  }
+}
