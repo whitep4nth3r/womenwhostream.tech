@@ -31,7 +31,15 @@
   @apply mb-8;
   @apply text-2xl;
   @apply justify-items-center;
+  @apply focus:outline-none;
+  @apply focus:ring-4;
+  @apply focus:ring-yellow-400;
+  @apply rounded-lg;
 }
+
+/* .card__twitchLink:focus {
+  
+} */
 
 .card__twitchLink__icon {
   @apply flex;
@@ -79,6 +87,9 @@
   @apply text-gray-50;
   @apply text-sm;
   @apply font-normal;
+  @apply focus:outline-none;
+  @apply focus:ring-4;
+  @apply focus:ring-yellow-400;
 }
 
 .card__socials {
@@ -96,4 +107,8 @@
   @apply p-2;
   @apply rounded-lg;
   @apply justify-items-center;
+  @apply text-gray-500;
+  @apply focus:outline-none;
+  @apply focus:ring-4;
+  @apply focus:ring-yellow-400;
 }

@@ -11,18 +11,19 @@ export default function Streamers({ streamers }) {
     <div className={Styles.cardGrid}>
       {streamers.map((streamer) => (
         <div key={streamer.sys.id} className={Styles.card}>
-          <img src="http://placekitten.com/1920/1080" className="w-full" />
+          <img src="http://placekitten.com/1920/1080" alt="test alt tag" className="w-full" />
 
           <div className={Styles.card__inner}>
             <a
               href={`https://twitch.tv/${streamer.twitchUsername}`}
               target="_blank"
-              aria-label={`Follow ${streamer.twitchUsername} on Twitch`}
               rel="nofollow noopener"
+              title={`Follow ${streamer.twitchUsername} on Twitch`}
               className={Styles.card__twitchLink}>
               <span className={Styles.card__twitchLink__icon}>
                 <img
                   src="http://placekitten.com/70/70"
+                  alt="test alt tag"
                   className="border-2 border-gray-900 rounded-full"
                 />
                 <span className={Styles.card__twitchLink__svg}>
@@ -68,7 +69,7 @@ export default function Streamers({ streamers }) {
                 href={streamer.websiteUrl}
                 target="_blank"
                 rel="nofollow noopener"
-                aria-label={`Visit ${streamer.twitchUsername}'s website`}
+                title={`Visit ${streamer.twitchUsername}'s website`}
                 className={Styles.card__socials__link}>
                 <ExternalLink />
               </a>

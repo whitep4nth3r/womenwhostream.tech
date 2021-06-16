@@ -25,6 +25,13 @@
   */
 @tailwind screens;
 
+:root {
+  --twitch-purple: #9146ff;
+  --twitter-blue: #1da1f2;
+  --youtube-red: #ff0000;
+  --github-black: #333333;
+}
+
 html {
   font-size: 100%;
   padding: 0;
