@@ -1,0 +1,99 @@
+.cardGrid {
+  @apply grid;
+  @apply gap-8;
+  @apply sm:grid-cols-1;
+  @apply md:grid-cols-2;
+  @apply lg:grid-cols-3;
+  @apply xl:grid-cols-4;
+}
+
+.card {
+  @apply flex;
+  @apply flex-col;
+  @apply items-stretch;
+  @apply overflow-hidden;
+  @apply border;
+  @apply border-gray-500;
+  @apply rounded-lg;
+}
+
+.card__inner {
+  @apply flex;
+  @apply flex-col;
+  @apply flex-grow;
+  @apply p-4;
+}
+
+.card__twitchLink {
+  @apply flex;
+  @apply flex-row;
+  @apply items-center;
+  @apply mb-8;
+  @apply text-2xl;
+  @apply justify-items-center;
+}
+
+.card__twitchLink__icon {
+  @apply flex;
+  @apply flex-col;
+  @apply px-2;
+  @apply mr-4;
+  @apply rounded-lg;
+  @apply flex-col;
+  @apply justify-items-center;
+  @apply relative;
+}
+
+.card__twitchLink__svg {
+  @apply absolute;
+  @apply rounded-full;
+  @apply p-2;
+  @apply border-2;
+  @apply border-white;
+  @apply flex;
+  @apply items-center;
+  @apply justify-items-center;
+  bottom: -1rem;
+  right: 0;
+  background-color: #9146ff;
+}
+
+.card__tags {
+  @apply flex;
+  @apply flex-wrap;
+  @apply justify-start;
+  @apply my-2;
+}
+
+.card__tag {
+  @apply flex;
+  @apply items-center;
+  @apply justify-start;
+  @apply px-4;
+  @apply py-2;
+  @apply m-1;
+  @apply bg-gray-900;
+  @apply border-2;
+  @apply border-gray-500;
+  @apply rounded-full;
+  @apply text-gray-50;
+  @apply text-sm;
+  @apply font-normal;
+}
+
+.card__socials {
+  @apply flex;
+  @apply flex-row;
+  @apply items-end;
+  @apply justify-between;
+  @apply flex-grow;
+  @apply mt-4;
+}
+
+.card__socials__link {
+  @apply flex;
+  @apply flex-col;
+  @apply p-2;
+  @apply rounded-lg;
+  @apply justify-items-center;
+}
