@@ -37,10 +37,6 @@
   @apply rounded-lg;
 }
 
-/* .card__twitchLink:focus {
-  
-} */
-
 .card__twitchLink__icon {
   @apply flex;
   @apply flex-col;
@@ -50,6 +46,8 @@
   @apply flex-col;
   @apply justify-items-center;
   @apply relative;
+  @apply h-24;
+  @apply w-24;
 }
 
 .card__twitchLink__svg {
@@ -61,9 +59,9 @@
   @apply flex;
   @apply items-center;
   @apply justify-items-center;
-  bottom: -1rem;
+  bottom: 0;
   right: 0;
-  background-color: #9146ff;
+  background-color: var(--twitch-purple);
 }
 
 .card__tags {
@@ -96,7 +94,7 @@
   @apply flex;
   @apply flex-row;
   @apply items-end;
-  @apply justify-between;
+  @apply justify-end;
   @apply flex-grow;
   @apply mt-4;
 }
@@ -104,7 +102,8 @@
 .card__socials__link {
   @apply flex;
   @apply flex-col;
-  @apply p-2;
+  @apply py-2;
+  @apply px-4;
   @apply rounded-lg;
   @apply justify-items-center;
   @apply text-gray-500;

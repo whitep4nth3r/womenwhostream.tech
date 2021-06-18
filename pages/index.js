@@ -15,8 +15,7 @@ export default function Index({ streamers }) {
       </Head>
 
       <main>
-        <h1>{streamers.total}</h1>
-        <StreamersGrid streamers={streamers.items} />
+        <StreamersGrid streamers={streamers} />
       </main>
     </>
   );
