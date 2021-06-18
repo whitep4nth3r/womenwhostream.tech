@@ -15,9 +15,9 @@ export default function Tag({ streamers, tag }) {
       </Head>
 
       <main>
-        <h1>{tag.name}</h1>
-        <h1>{streamers.total}</h1>
-        <StreamersGrid streamers={streamers.items} />
+        <h1>This is a work in progress!</h1>
+        <h2>{tag.name}</h2>
+        <StreamersGrid streamers={streamers} />
       </main>
     </>
   );

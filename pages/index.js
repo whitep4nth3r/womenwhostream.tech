@@ -15,6 +15,7 @@ export default function Index({ streamers }) {
       </Head>
 
       <main>
+        <h1>This is a work in progress!</h1>
         <StreamersGrid streamers={streamers} />
       </main>
     </>
