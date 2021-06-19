@@ -29,5 +29,6 @@ export async function getStaticProps() {
     props: {
       streamers,
     },
+    revalidate: 1,
   };
 }

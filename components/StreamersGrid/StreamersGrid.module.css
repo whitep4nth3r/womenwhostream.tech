@@ -15,6 +15,7 @@
   @apply border;
   @apply border-gray-500;
   @apply rounded-lg;
+  @apply relative;
 }
 
 .card__inner {
@@ -22,6 +23,53 @@
   @apply flex-col;
   @apply flex-grow;
   @apply p-4;
+}
+
+.card__imageHolder {
+  @apply relative;
+  aspect-ratio: 16/9;
+  @apply overflow-hidden;
+}
+
+.card__live {
+  @apply rounded-lg;
+  @apply absolute;
+  @apply px-3;
+  @apply py-1;
+  @apply right-1.5;
+  @apply top-1.5;
+  @apply font-bold;
+  @apply border-2;
+  @apply border-white;
+  background-color: var(--twitch-live);
+  @apply shadow-md;
+}
+
+.card__live span {
+  @apply text-white;
+  text-shadow: 2px 2px #000000;
+}
+
+.card__streamTitle {
+  @apply bg-gray-900;
+  @apply text-white;
+  @apply py-3;
+  @apply px-4;
+  @apply bottom-0;
+  @apply absolute;
+  @apply w-full;
+}
+
+.card__streamViewers {
+  @apply text-white;
+  @apply bg-gray-900;
+  @apply text-xs;
+  @apply rounded-lg;
+  @apply p-2;
+  @apply absolute;
+  @apply left-1.5;
+  @apply top-1.5;
+  @apply shadow-md;
 }
 
 .card__twitchLink {
