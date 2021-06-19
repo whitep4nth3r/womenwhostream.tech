@@ -13,9 +13,10 @@
   @apply items-stretch;
   @apply overflow-hidden;
   @apply border;
-  @apply border-gray-500;
+  @apply border-gray-300;
   @apply rounded-lg;
   @apply relative;
+  @apply shadow-md;
 }
 
 .card__inner {

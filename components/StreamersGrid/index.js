@@ -7,16 +7,47 @@ import YouTube from "./svg/youtube";
 import ExternalLink from "./svg/externallink";
 import Styles from "./StreamersGrid.module.css";
 
-// can use this if streamer is live
-// https://static-cdn.jtvnw.net/previews-ttv/live_user_whitep4nth3r-400x225.jpg
-
-function calculateImageUrl(isLive, streamData, twitchData) {
+function constructImage(isLive, streamData, twitchData, vodData) {
   if (isLive) {
-    return streamData.thumbnail_url.replace("{width}", "1920").replace("{height}", "1080");
+    return (
+      <Image
+        src={streamData.thumbnail_url.replace("{width}", "1920").replace("{height}", "1080")}
+        alt={`${twitchData.display_name} on Twitch`}
+        height="225"
+        width="400"
+        layout="responsive"
+      />
+    );
+  } else if (vodData) {
+    return (
+      <Image
+        src={vodData.thumbnail_url.replace("%{width}", "1920").replace("%{height}", "1080")}
+        alt={`${twitchData.display_name} on Twitch`}
+        height="225"
+        width="400"
+        layout="responsive"
+      />
+    );
   } else if (twitchData.offline_image_url) {
-    return twitchData.offline_image_url;
+    return (
+      <Image
+        src={twitchData.offline_image_url}
+        alt={`${twitchData.display_name} on Twitch`}
+        height="225"
+        width="400"
+        layout="responsive"
+      />
+    );
   } else {
-    return "http://placekitten.com/1920/1080";
+    return (
+      <Image
+        src={twitchData.profile_image_url}
+        alt={`${twitchData.display_name} on Twitch`}
+        height="300"
+        width="300"
+        layout="responsive"
+      />
+    );
   }
 }
 
@@ -27,18 +58,18 @@ export default function Streamers({ streamers }) {
         const isLive = streamer.streamData.length === 1;
         const streamData = isLive ? streamer.streamData[0] : [];
         const twitchData = streamer.twitchData[0];
-        const cardImageUrl = calculateImageUrl(isLive, streamData, twitchData);
+        const vodData = streamer.vodData[0];
 
         return (
           <div key={streamer.sys.id} className={Styles.card}>
             <div className={Styles.card__imageHolder}>
-              <Image
-                src={cardImageUrl}
-                alt={`${streamer.twitchUsername} on Twitch`}
-                height="225"
-                width="400"
-                layout="responsive"
-              />
+              <a
+                href={`https://twitch.tv/${streamer.twitchUsername}`}
+                target="_blank"
+                rel="nofollow noopener"
+                title={`Watch ${streamer.twitchUsername} on Twitch`}>
+                {constructImage(isLive, streamData, twitchData, vodData)}
+              </a>
 
               {isLive && (
                 <>
@@ -59,7 +90,7 @@ export default function Streamers({ streamers }) {
                 className={Styles.card__twitchLink}>
                 <div className={Styles.card__twitchLink__icon}>
                   <Image
-                    src={streamer.twitchData[0].profile_image_url}
+                    src={twitchData.profile_image_url}
                     alt={`${streamer.twitchUsername} on Twitch`}
                     height="100"
                     width="100"
