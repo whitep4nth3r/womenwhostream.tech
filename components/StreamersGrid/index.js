@@ -63,13 +63,7 @@ export default function Streamers({ streamers }) {
         return (
           <div key={streamer.sys.id} className={Styles.card}>
             <div className={Styles.card__imageHolder}>
-              <a
-                href={`https://twitch.tv/${streamer.twitchUsername}`}
-                target="_blank"
-                rel="nofollow noopener"
-                title={`Watch ${streamer.twitchUsername} on Twitch`}>
-                {constructImage(isLive, streamData, twitchData, vodData)}
-              </a>
+              {constructImage(isLive, streamData, twitchData, vodData)}
 
               {isLive && (
                 <>

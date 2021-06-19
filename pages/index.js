@@ -1,6 +1,8 @@
 import Head from "next/head";
 import ContentfulApi from "@ctfl/api";
 import StreamersGrid from "@components/StreamersGrid";
+import Header from "@components/Header";
+import ContentWrapper from "@components/ContentWrapper";
 
 export default function Index({ streamers }) {
   return (
@@ -13,10 +15,11 @@ export default function Index({ streamers }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <Header />
       <main>
-        <h1>This is a work in progress!</h1>
-        <StreamersGrid streamers={streamers} />
+        <ContentWrapper>
+          <StreamersGrid streamers={streamers} />
+        </ContentWrapper>
       </main>
     </>
   );
