@@ -1,5 +1,5 @@
 import Head from "next/head";
-import ContentfulApi from "@ctfl/api";
+import Streamers from "@lib/Streamers";
 import StreamersGrid from "@components/StreamersGrid";
 import MainLayout from "@components/MainLayout";
 
@@ -29,7 +29,7 @@ export default function Tag({ streamers, tag, tags }) {
 }
 
 export async function getStaticPaths() {
-  const tags = await ContentfulApi.getAllTags();
+  const tags = await Streamers.getTags();
 
   const paths = tags.map((tag) => {
     return { params: { tag: tag.slug } };
@@ -42,9 +42,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const streamers = await ContentfulApi.getStreamersByTag(params.tag);
-  const tag = await ContentfulApi.getTagBySlug(params.tag);
-  const tags = await ContentfulApi.getAllTags();
+  const streamers = await Streamers.getByTag(params.tag);
+  const tag = await Streamers.getTagBySlug(params.tag);
+  const tags = await Streamers.getTags();
 
   return {
     props: {

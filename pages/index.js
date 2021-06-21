@@ -1,5 +1,5 @@
 import Head from "next/head";
-import ContentfulApi from "@ctfl/api";
+import Streamers from "@lib/Streamers";
 import StreamersGrid from "@components/StreamersGrid";
 import MainLayout from "@components/MainLayout";
 
@@ -30,8 +30,8 @@ export default function Index({ streamers, tags }) {
 }
 
 export async function getStaticProps() {
-  const streamers = await ContentfulApi.getAllStreamers();
-  const tags = await ContentfulApi.getAllTags();
+  const streamers = await Streamers.getAll();
+  const tags = await Streamers.getTags();
 
   return {
     props: {

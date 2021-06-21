@@ -3,9 +3,8 @@
     "baseUrl": "./",
     "paths": {
       "@components/*": ["components/*"],
-      "@ctfl/*": ["lib/ctfl/*"],
-      "@styles/*": ["styles/*"],
-      "@twitch/*": ["lib/twitch/*"]
+      "@lib/*": ["lib/*"],
+      "@styles/*": ["styles/*"]
     }
   }
 }

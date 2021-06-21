@@ -18,7 +18,7 @@ function constructImage(isLive, streamData, twitchData, vodData) {
         layout="responsive"
       />
     );
-  } else if (vodData) {
+  } else if (vodData !== null) {
     return (
       <Image
         src={vodData.thumbnail_url.replace("%{width}", "1920").replace("%{height}", "1080")}
@@ -56,10 +56,8 @@ export default function Streamers({ streamers }) {
     <ContentWrapper>
       <div className={Styles.cardGrid}>
         {streamers.map((streamer) => {
-          const isLive = streamer.streamData.length === 1;
-          const streamData = isLive ? streamer.streamData[0] : [];
-          const twitchData = streamer.twitchData[0];
-          const vodData = streamer.vodData[0];
+          const { vodData, twitchData, streamData } = streamer;
+          const isLive = streamData !== null;
 
           return (
             <div key={streamer.sys.id} className={Styles.card}>
