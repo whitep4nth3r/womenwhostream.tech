@@ -10,9 +10,11 @@
   @apply focus:ring-yellow-400;
   @apply rounded-lg;
   display: block;
+  font-family: var(--font-family-heading);
 }
 
 .header__title {
   @apply text-white;
-  @apply text-2xl;
+  @apply text-5xl;
+  @apply uppercase;
 }

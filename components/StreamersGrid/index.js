@@ -97,6 +97,7 @@ export default function Streamers({ streamers }) {
                 </div>
                 <span>{streamer.twitchUsername}</span>
               </a>
+              <p className={Styles.card__bio}>{twitchData.description}</p>
               <div className={Styles.card__tags}>
                 {streamer.tagsCollection.items.map((tag) => (
                   <Link href={`/${tag.slug}`} key={tag.sys.id}>

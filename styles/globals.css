@@ -31,6 +31,8 @@
   --twitter-blue: #1da1f2;
   --youtube-red: #ff0000;
   --github-black: #333333;
+  --font-family-heading: "Sora", sans-serif;
+  --font-family-main: "Source Sans Pro", sans-serif;
 }
 
 html {
@@ -41,6 +43,7 @@ html {
 
 body {
   font-size: 1rem;
+  font-family: var(--font-family-main);
 }
 
 * {

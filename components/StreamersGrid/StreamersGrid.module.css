@@ -49,9 +49,11 @@
 .card__live span {
   @apply text-white;
   text-shadow: 2px 2px #000000;
+  font-family: var(--font-family-heading);
 }
 
 .card__streamTitle {
+  --tw-bg-opacity: 0.9 !important;
   @apply bg-gray-900;
   @apply text-white;
   @apply py-3;
@@ -59,6 +61,7 @@
   @apply bottom-0;
   @apply absolute;
   @apply w-full;
+  font-family: var(--font-family-heading);
 }
 
 .card__streamViewers {
@@ -77,13 +80,14 @@
   @apply flex;
   @apply flex-row;
   @apply items-center;
-  @apply mb-8;
+  @apply mb-4;
   @apply text-2xl;
   @apply justify-items-center;
   @apply focus:outline-none;
   @apply focus:ring-4;
   @apply focus:ring-yellow-400;
   @apply rounded-lg;
+  font-family: var(--font-family-heading);
 }
 
 .card__twitchLink__icon {
@@ -159,4 +163,8 @@
   @apply focus:outline-none;
   @apply focus:ring-4;
   @apply focus:ring-yellow-400;
+}
+
+.card__bio {
+  @apply mb-8;
 }
