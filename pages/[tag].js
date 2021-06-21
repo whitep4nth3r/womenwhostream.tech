@@ -1,10 +1,9 @@
 import Head from "next/head";
 import ContentfulApi from "@ctfl/api";
 import StreamersGrid from "@components/StreamersGrid";
-import Header from "@components/Header";
-import ContentWrapper from "@components/ContentWrapper";
+import MainLayout from "@components/MainLayout";
 
-export default function Tag({ streamers, tag }) {
+export default function Tag({ streamers, tag, tags }) {
   return (
     <>
       <Head>
@@ -20,11 +19,10 @@ export default function Tag({ streamers, tag }) {
           rel="stylesheet"
         />
       </Head>
-      <Header tag={tag.name} />
       <main>
-        <ContentWrapper>
+        <MainLayout tags={tags} selectedTag={tag}>
           <StreamersGrid streamers={streamers} />
-        </ContentWrapper>
+        </MainLayout>
       </main>
     </>
   );
@@ -46,11 +44,13 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const streamers = await ContentfulApi.getStreamersByTag(params.tag);
   const tag = await ContentfulApi.getTagBySlug(params.tag);
+  const tags = await ContentfulApi.getAllTags();
 
   return {
     props: {
       streamers,
       tag,
+      tags,
     },
     revalidate: 1,
   };

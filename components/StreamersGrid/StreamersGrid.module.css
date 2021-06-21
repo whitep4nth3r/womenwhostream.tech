@@ -2,9 +2,9 @@
   @apply grid;
   @apply gap-8;
   @apply sm:grid-cols-1;
-  @apply md:grid-cols-2;
-  @apply lg:grid-cols-3;
-  @apply xl:grid-cols-4;
+  @apply md:grid-cols-1;
+  @apply lg:grid-cols-2;
+  @apply xl:grid-cols-3;
 }
 
 .card {
@@ -53,15 +53,22 @@
 }
 
 .card__streamTitle {
-  --tw-bg-opacity: 0.9 !important;
-  @apply bg-gray-900;
-  @apply text-white;
-  @apply py-3;
-  @apply px-4;
-  @apply bottom-0;
-  @apply absolute;
-  @apply w-full;
-  font-family: var(--font-family-heading);
+  @apply hidden;
+}
+
+@media screen and (min-width: 500px) {
+  .card__streamTitle {
+    --tw-bg-opacity: 0.9 !important;
+    @apply block;
+    @apply absolute;
+    @apply bg-gray-900;
+    @apply text-white;
+    @apply py-3;
+    @apply px-4;
+    @apply bottom-0;
+    @apply w-full;
+    font-family: var(--font-family-heading);
+  }
 }
 
 .card__streamViewers {
@@ -81,7 +88,7 @@
   @apply flex-row;
   @apply items-center;
   @apply mb-4;
-  @apply text-2xl;
+  @apply text-xl;
   @apply justify-items-center;
   @apply focus:outline-none;
   @apply focus:ring-4;
@@ -90,7 +97,7 @@
   font-family: var(--font-family-heading);
 }
 
-.card__twitchLink__icon {
+.card__twitchLink__profileImg {
   @apply flex;
   @apply flex-col;
   @apply px-2;
@@ -99,7 +106,6 @@
   @apply flex-col;
   @apply justify-items-center;
   @apply relative;
-  @apply h-24;
   @apply w-24;
 }
 
@@ -156,7 +162,7 @@
   @apply flex;
   @apply flex-col;
   @apply py-2;
-  @apply px-4;
+  @apply px-2;
   @apply rounded-lg;
   @apply justify-items-center;
   @apply text-gray-500;
