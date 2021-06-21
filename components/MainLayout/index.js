@@ -7,7 +7,9 @@ export default function MainLayout({ tags, children, selectedTag }) {
     <div className={Styles.mainLayout}>
       <header className={Styles.mainLayout__header}>
         <Link href="/">
-          <a className={Styles.mainLayout__header__link}>
+          <a
+            className={Styles.mainLayout__header__link}
+            aria-label="View all Women Who Stream Tech">
             <h1 className={Styles.mainLayout__header__title}>Women Who Stream Tech</h1>
           </a>
         </Link>
@@ -26,7 +28,11 @@ export default function MainLayout({ tags, children, selectedTag }) {
         <ul className={Styles.mainLayout__tags}>
           <li>
             <Link href="/">
-              <a className={Styles.mainLayout__tags__tag}>All</a>
+              <a
+                className={Styles.mainLayout__tags__tag}
+                aria-label="View all Women Who Stream Tech">
+                All
+              </a>
             </Link>
           </li>
           {tags.map((tag) => {
@@ -37,7 +43,9 @@ export default function MainLayout({ tags, children, selectedTag }) {
             return (
               <li key={tag.slug}>
                 <Link href={`/${tag.slug}`}>
-                  <a className={classNames}>{tag.name}</a>
+                  <a className={classNames} aria-label={`View Women Who Stream ${tag.name}`}>
+                    {tag.name}
+                  </a>
                 </Link>
               </li>
             );

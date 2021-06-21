@@ -22,17 +22,43 @@ export default {
         "https://fonts.googleapis.com/css2?family=Sora:wght@400&family=Source+Sans+Pro:ital,wght@0,400;1,400&display=swap",
     },
     {
+      rel: "manifest",
+      href: "/site.webmanifest",
+    },
+    {
       rel: "icon",
-      href: "https://www.test.ie/favicon.ico",
+      href: "/favicon.ico",
+    },
+    {
+      rel: "mask-icon",
+      href: "/safari-pinned-tab.svg",
+      color: "#0f111a",
+    },
+    {
+      rel: "icon",
+      href: "/favicon-16x16.png",
+      sizes: "16x16",
+      type: "image/png",
+    },
+    {
+      rel: "icon",
+      href: "/favicon-32x32.png",
+      sizes: "32x32",
+      type: "image/png",
     },
     {
       rel: "apple-touch-icon",
-      href: "https://www.test.ie/touch-icon-ipad.jpg",
-      sizes: "76x76",
+      href: "/apple-touch-icon.png",
+      sizes: "180x180",
+      type: "image/png",
     },
     {
-      rel: "manifest",
-      href: "/manifest.json",
+      name: "msapplication-TileColor",
+      content: "#603cba",
+    },
+    {
+      name: "theme-color",
+      content: "#ffffff",
     },
   ],
 };

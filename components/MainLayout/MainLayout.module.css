@@ -32,7 +32,7 @@
   @apply text-base;
   @apply uppercase;
   @apply block;
-  @apply mb-2;
+  @apply mb-4;
   @apply focus:outline-none;
   @apply focus:ring-4;
   @apply focus:ring-yellow-400;
@@ -64,12 +64,12 @@
   @apply text-sm;
   @apply uppercase;
   @apply block;
-  @apply mb-2;
   @apply focus:outline-none;
   @apply focus:ring-4;
   @apply focus:ring-yellow-400;
   @apply rounded-lg;
   @apply mr-8;
+  @apply mb-2;
   font-family: var(--font-family-heading);
 }
 
