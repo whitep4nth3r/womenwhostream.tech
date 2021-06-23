@@ -29,6 +29,7 @@
 .card__imageHolder {
   @apply relative;
   @apply overflow-hidden;
+  @apply bg-purple-twitch;
 }
 
 .card__live {
