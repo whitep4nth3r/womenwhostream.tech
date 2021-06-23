@@ -14,7 +14,7 @@
   @apply focus:ring-yellow-400;
   @apply rounded-lg;
   @apply block;
-  font-family: var(--font-family-heading);
+  @apply font-heading;
 }
 
 .mainLayout__header__title {
@@ -38,7 +38,7 @@
   @apply focus:ring-yellow-400;
   @apply rounded-lg;
   @apply list-none;
-  font-family: var(--font-family-heading);
+  @apply font-heading;
 }
 
 .mainLayout__tags__tag__selected {
@@ -70,7 +70,7 @@
   @apply rounded-lg;
   @apply mr-8;
   @apply mb-2;
-  font-family: var(--font-family-heading);
+  @apply font-heading;
 }
 
 .mainLayout__copyright {
@@ -82,7 +82,7 @@
 @media screen and (min-width: 820px) {
   .mainLayout {
     @apply grid;
-    grid-template-columns: 2fr 4fr;
+    @apply grid-cols-layout;
   }
 
   .mainLayout__tags {
@@ -101,6 +101,6 @@
 
 @media screen and (min-width: 1080px) {
   .mainLayout {
-    grid-template-columns: 1fr 5fr;
+    @apply grid-cols-layoutWide;
   }
 }

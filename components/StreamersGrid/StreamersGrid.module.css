@@ -28,7 +28,6 @@
 
 .card__imageHolder {
   @apply relative;
-  aspect-ratio: 16/9;
   @apply overflow-hidden;
 }
 
@@ -42,14 +41,14 @@
   @apply font-bold;
   @apply border-2;
   @apply border-white;
-  background-color: var(--twitch-live);
+  @apply bg-red-twitch;
   @apply shadow-md;
 }
 
 .card__live span {
   @apply text-white;
+  @apply font-heading;
   text-shadow: 2px 2px #000000;
-  font-family: var(--font-family-heading);
 }
 
 .card__streamTitle {
@@ -58,7 +57,6 @@
 
 @media screen and (min-width: 500px) {
   .card__streamTitle {
-    --tw-bg-opacity: 0.9 !important;
     @apply block;
     @apply absolute;
     @apply bg-gray-900;
@@ -67,7 +65,7 @@
     @apply px-4;
     @apply bottom-0;
     @apply w-full;
-    font-family: var(--font-family-heading);
+    @apply font-heading;
   }
 }
 
@@ -94,7 +92,7 @@
   @apply focus:ring-4;
   @apply focus:ring-yellow-400;
   @apply rounded-lg;
-  font-family: var(--font-family-heading);
+  @apply font-heading;
 }
 
 .card__twitchLink__profileImg {
@@ -107,20 +105,6 @@
   @apply justify-items-center;
   @apply relative;
   @apply w-24;
-}
-
-.card__twitchLink__svg {
-  @apply absolute;
-  @apply rounded-full;
-  @apply p-2;
-  @apply border-2;
-  @apply border-white;
-  @apply flex;
-  @apply items-center;
-  @apply justify-items-center;
-  bottom: 0;
-  right: 0;
-  background-color: var(--twitch-purple);
 }
 
 .card__tags {

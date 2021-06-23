@@ -25,16 +25,6 @@
   */
 @tailwind screens;
 
-:root {
-  --twitch-purple: #9146ff;
-  --twitch-live: #e91916;
-  --twitter-blue: #1da1f2;
-  --youtube-red: #ff0000;
-  --github-black: #333333;
-  --font-family-heading: "Sora", sans-serif;
-  --font-family-main: "Source Sans Pro", sans-serif;
-}
-
 html {
   font-size: 100%;
   padding: 0;
@@ -42,8 +32,8 @@ html {
 }
 
 body {
-  font-size: 1rem;
-  font-family: var(--font-family-main);
+  @apply text-base;
+  @apply font-body;
 }
 
 * {
