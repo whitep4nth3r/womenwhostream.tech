@@ -104,3 +104,17 @@
     @apply grid-cols-layoutWide;
   }
 }
+
+.mainLayout__disclaimer {
+  @apply bg-purple-twitch;
+  @apply text-white;
+  @apply rounded-lg;
+  @apply flex;
+  @apply text-center;
+  @apply justify-items-center;
+  @apply items-center;
+  @apply p-4;
+  @apply mt-8;
+  @apply mx-8;
+  @apply font-heading;
+}

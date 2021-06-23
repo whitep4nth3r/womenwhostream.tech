@@ -54,6 +54,7 @@ export default function MainLayout({ tags, children, selectedTag }) {
       </header>
 
       <div className={Styles.mainLayout__body}>
+        <p className={Styles.mainLayout__disclaimer}>This site is in alpha. It might break!</p>
         {children}
         <p className={Styles.mainLayout__copyright}>
           &copy; {date.getFullYear()} womenwhostream.tech
