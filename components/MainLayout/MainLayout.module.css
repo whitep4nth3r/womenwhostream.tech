@@ -6,6 +6,11 @@
 .mainLayout__header {
   @apply bg-gray-900;
   @apply p-4;
+  @apply sticky
+  @apply top-0;
+	@apply z-50;
+	@apply flex;
+	@apply flex-col;
 }
 
 .mainLayout__header__link {
@@ -84,9 +89,14 @@
     @apply grid;
     @apply grid-cols-layout;
   }
-
+  
+  .mainLayout__header {
+		@apply h-screen;
+	}
+  
   .mainLayout__tags {
     @apply block;
+    @apply overflow-x-scroll;
   }
 
   .mainLayout__links {
