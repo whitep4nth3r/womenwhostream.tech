@@ -2,8 +2,6 @@ const dotenv = require("dotenv");
 const fetch = require("node-fetch");
 const fs = require("fs");
 
-let STREAMERS_CACHE = [];
-
 async function waitFor(seconds) {
   return await new Promise((res) => setTimeout(res, seconds * 1000));
 }
@@ -55,7 +53,7 @@ async function callTwitch(url, accessToken) {
       // temporarily back off the API when rate limiting response is returned
       const refreshWhen = parseInt(response.headers.get("Ratelimit-Reset"));
       const timeToWait = refreshWhen - Math.floor(Date.now() / 1000);
-      console.warn(`Rate limited for ${timeToWait} seconds`);
+      console.warn(`🚨 Rate limited for ${timeToWait} seconds`);
       await waitFor(timeToWait);
     }
 
@@ -104,7 +102,7 @@ async function getTwitchAccessToken() {
 }
 
 async function getTwitchUsersbyLogin(usernames, accessToken) {
-  console.log("=== Getting Twitch Users by Login ===");
+  console.log("⚡️ Getting Twitch Users by Login");
   if (usernames.length >= 99) {
     throw "Number of users is >= 99! YOU NEED TO SCALE TwitchAPI.getUsersbyLogin()!";
   }
@@ -123,7 +121,7 @@ async function getTwitchUsersbyLogin(usernames, accessToken) {
 }
 
 async function getTwitchVodDataById(twitchId, accessToken) {
-  console.log("=== Getting Twitch Vod Data by twitchId ===");
+  console.log("📹 Getting Twitch Vod Data by twitchId");
   const vod = await callTwitch(
     `https://api.twitch.tv/helix/videos?user_id=${twitchId}&first=1`,
     accessToken,
@@ -133,7 +131,7 @@ async function getTwitchVodDataById(twitchId, accessToken) {
 }
 
 async function getTwitchStreamDataByLogin(twitchUsername, accessToken) {
-  console.log("=== Getting Twitch Stream Data by Login ===");
+  console.log("📣 Getting Twitch Stream Data by Login");
   const stream = await callTwitch(
     `https://api.twitch.tv/helix/streams?user_login=${twitchUsername}`,
     accessToken,
@@ -143,7 +141,7 @@ async function getTwitchStreamDataByLogin(twitchUsername, accessToken) {
 }
 
 async function mergeStreamersWithTwitchData(streamers) {
-  console.log("=== Merging Contentful data with Twitch Data ===");
+  console.log("💰 Merging Contentful data with Twitch Data");
 
   const accessToken = await getTwitchAccessToken();
   const userNames = streamers.map((streamer) => streamer.twitchUsername);
@@ -163,7 +161,7 @@ async function mergeStreamersWithTwitchData(streamers) {
 
   // load streamers in serial rather than parallel to avoid overhwhelming the API
   for (let streamer of mergedStreamers) {
-    console.log("=== Loading Twitch data for streamers in parallel ===");
+    console.log("✨ Loading Twitch data for streamers in some kind of loop");
     const vodData = await getTwitchVodDataById(streamer.twitchData.id, accessToken.access_token);
     const streamData = await getTwitchStreamDataByLogin(
       streamer.twitchUsername,
@@ -181,11 +179,7 @@ async function mergeStreamersWithTwitchData(streamers) {
 }
 
 async function getAllStreamers() {
-  console.log("=== Running getAllStreamers() ===");
-
-  if (STREAMERS_CACHE.length > 0) {
-    return STREAMERS_CACHE;
-  }
+  console.log("🔥 Running getAllStreamers()");
 
   const query = `{
 streamerCollection(order: sys_firstPublishedAt_ASC) {
@@ -217,7 +211,6 @@ streamerCollection(order: sys_firstPublishedAt_ASC) {
     const mergedData = await mergeStreamersWithTwitchData(streamers.data.streamerCollection.items);
 
     mergedData.sort(sortStreamers);
-    STREAMERS_CACHE = mergedData;
 
     return mergedData;
   } catch (error) {
@@ -226,20 +219,27 @@ streamerCollection(order: sys_firstPublishedAt_ASC) {
 }
 
 (async function () {
-  console.log("=== SCRIPT STARTED ===");
+  console.log("🎱 Welcome to build-data!");
   dotenv.config();
 
   try {
-    const streamersData = await getAllStreamers();
+    console.log("👀 Reading current streamers.json");
+    const currentFile = await fs.readFileSync("./scripts/data/streamers.json", "utf8");
+    const currentData = JSON.parse(currentFile);
+    const newData = await getAllStreamers();
 
-    await fs.writeFile(
-      "./scripts/data/streamers.json",
-      JSON.stringify(streamersData),
-      function (err) {
+    if (newData !== currentData) {
+      console.log("⏳ Writing new streamers.json file!");
+      await fs.writeFile("./scripts/data/streamers.json", JSON.stringify(newData), function (err) {
         if (err) return console.log(err);
-        console.log("Streamers file written!");
-      },
-    );
+        console.log("✅ New streamers.json file written!");
+      });
+
+      console.log("🔥 Calling Vercel webhook!");
+      await fetch(process.env.VERCEL_DEPLOY_GH_ACTION_HOOK, { method: "POST" });
+    } else {
+      console.log("🔥 No new data to write! Carry on!");
+    }
   } catch (error) {
     console.log(error);
   }

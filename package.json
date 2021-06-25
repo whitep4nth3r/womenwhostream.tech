@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "builddata": "node ./scripts/build-data.js",
+    "getstreamers": "node ./scripts/get-streamers-json.js",
     "dev": "next dev",
     "build": "next build",
     "postbuild": "next-sitemap",
