@@ -1,4 +1,4 @@
-import Head from "next/head";
+import Contentful from "@lib/Contentful";
 import Streamers from "@lib/Streamers";
 import StreamersGrid from "@components/StreamersGrid";
 import MainLayout from "@components/MainLayout";
@@ -23,13 +23,12 @@ export default function Index({ streamers, tags }) {
 
 export async function getStaticProps() {
   const streamers = await Streamers.getAll();
-  const tags = await Streamers.getTags();
+  const tags = await Contentful.getTags();
 
   return {
     props: {
       streamers,
       tags,
     },
-    revalidate: 120,
   };
 }
