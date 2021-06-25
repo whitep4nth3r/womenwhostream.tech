@@ -6,7 +6,7 @@
 .mainLayout__header {
   @apply bg-gray-900;
   @apply p-4;
-  @apply sticky
+  @apply sticky;
   @apply top-0;
 	@apply z-50;
 	@apply flex;
