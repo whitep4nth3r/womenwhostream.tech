@@ -228,7 +228,7 @@ streamerCollection(order: sys_firstPublishedAt_ASC) {
       JSON.stringify(streamersData),
       function (err) {
         if (err) return console.log(err);
-        console.log("success");
+        console.log("Streamers file written!");
       },
     );
   } catch (error) {

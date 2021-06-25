@@ -1,5 +1,5 @@
-import Head from "next/head";
-import Streamers from "@lib/Contentful";
+import Contentful from "@lib/Contentful";
+import Streamers from "@lib/Streamers";
 import StreamersGrid from "@components/StreamersGrid";
 import MainLayout from "@components/MainLayout";
 import { NextSeo } from "next-seo";
@@ -23,7 +23,7 @@ export default function Index({ streamers, tags }) {
 
 export async function getStaticProps() {
   const streamers = await Streamers.getAll();
-  const tags = await Streamers.getTags();
+  const tags = await Contentful.getTags();
 
   return {
     props: {
