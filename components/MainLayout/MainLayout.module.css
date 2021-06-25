@@ -6,6 +6,11 @@
 .mainLayout__header {
   @apply bg-gray-900;
   @apply p-4;
+  @apply sticky;
+  @apply top-0;
+	@apply z-50;
+	@apply flex;
+	@apply flex-col;
 }
 
 .mainLayout__header__link {
@@ -39,6 +44,7 @@
   @apply rounded-lg;
   @apply list-none;
   @apply font-heading;
+	@apply mx-4;
 }
 
 .mainLayout__tags__tag__selected {
@@ -84,9 +90,15 @@
     @apply grid;
     @apply grid-cols-layout;
   }
-
+  
+  .mainLayout__header {
+		@apply h-screen;
+	}
+  
   .mainLayout__tags {
     @apply block;
+    @apply overflow-x-scroll;
+	  @apply pt-4;
   }
 
   .mainLayout__links {
