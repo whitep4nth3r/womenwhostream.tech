@@ -6,10 +6,11 @@ jobs:
   build-streamers-json:
     runs-on: ubuntu-latest
     steps:
-      - name: Get the data
-      - uses: actions/checkout@v2
-      - name: Use Node.js 14.x
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js 14
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
-      - run: npm run getstreamers
+      - name: Run script
+        run: npm run getstreamers
