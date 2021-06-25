@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Streamers from "@lib/Streamers";
+import Streamers from "@lib/Contentful";
 import StreamersGrid from "@components/StreamersGrid";
 import MainLayout from "@components/MainLayout";
 import { NextSeo } from "next-seo";
@@ -44,6 +44,5 @@ export async function getStaticProps({ params }) {
       tag,
       tags,
     },
-    revalidate: 120,
   };
 }
