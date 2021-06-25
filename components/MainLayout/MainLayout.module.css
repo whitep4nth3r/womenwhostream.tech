@@ -44,6 +44,7 @@
   @apply rounded-lg;
   @apply list-none;
   @apply font-heading;
+	@apply mx-4;
 }
 
 .mainLayout__tags__tag__selected {
@@ -97,6 +98,7 @@
   .mainLayout__tags {
     @apply block;
     @apply overflow-x-scroll;
+	  @apply pt-4;
   }
 
   .mainLayout__links {
