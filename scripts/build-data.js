@@ -104,6 +104,7 @@ async function getTwitchAccessToken() {
 }
 
 async function getTwitchUsersbyLogin(usernames, accessToken) {
+  console.log("=== Getting Twitch Users by Login ===");
   if (usernames.length >= 99) {
     throw "Number of users is >= 99! YOU NEED TO SCALE TwitchAPI.getUsersbyLogin()!";
   }
@@ -122,6 +123,7 @@ async function getTwitchUsersbyLogin(usernames, accessToken) {
 }
 
 async function getTwitchVodDataById(twitchId, accessToken) {
+  console.log("=== Getting Twitch Vod Data by twitchId ===");
   const vod = await callTwitch(
     `https://api.twitch.tv/helix/videos?user_id=${twitchId}&first=1`,
     accessToken,
@@ -131,6 +133,7 @@ async function getTwitchVodDataById(twitchId, accessToken) {
 }
 
 async function getTwitchStreamDataByLogin(twitchUsername, accessToken) {
+  console.log("=== Getting Twitch Stream Data by Login ===");
   const stream = await callTwitch(
     `https://api.twitch.tv/helix/streams?user_login=${twitchUsername}`,
     accessToken,
@@ -140,6 +143,8 @@ async function getTwitchStreamDataByLogin(twitchUsername, accessToken) {
 }
 
 async function mergeStreamersWithTwitchData(streamers) {
+  console.log("=== Merging Contentful data with Twitch Data ===");
+
   const accessToken = await getTwitchAccessToken();
   const userNames = streamers.map((streamer) => streamer.twitchUsername);
   const allUserData = await getTwitchUsersbyLogin(userNames, accessToken.access_token);
@@ -158,6 +163,7 @@ async function mergeStreamersWithTwitchData(streamers) {
 
   // load streamers in serial rather than parallel to avoid overhwhelming the API
   for (let streamer of mergedStreamers) {
+    console.log("=== Loading Twitch data for streamers in parallel ===");
     const vodData = await getTwitchVodDataById(streamer.twitchData.id, accessToken.access_token);
     const streamData = await getTwitchStreamDataByLogin(
       streamer.twitchUsername,
@@ -175,6 +181,8 @@ async function mergeStreamersWithTwitchData(streamers) {
 }
 
 async function getAllStreamers() {
+  console.log("=== Running getAllStreamers() ===");
+
   if (STREAMERS_CACHE.length > 0) {
     return STREAMERS_CACHE;
   }
@@ -218,6 +226,7 @@ streamerCollection(order: sys_firstPublishedAt_ASC) {
 }
 
 (async function () {
+  console.log("=== SCRIPT STARTED ===");
   dotenv.config();
 
   try {
