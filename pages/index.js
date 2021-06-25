@@ -30,6 +30,6 @@ export async function getStaticProps() {
       streamers,
       tags,
     },
-    revalidate: 90,
+    revalidate: 120,
   };
 }
