@@ -1,5 +1,5 @@
 import { getServerSideSitemap } from "next-sitemap";
-import Streamers from "@lib/Streamers";
+import Streamers from "@lib/Contentful";
 
 export const getServerSideProps = async (ctx) => {
   // Method to source urls from cms
