@@ -1,7 +1,6 @@
 name: "Get Streamers"
 on:
-  schedule:
-#     - cron: "*/10 * * * *"
+  workflow_dispatch
 jobs:
   build-streamers-json:
     runs-on: ubuntu-latest
