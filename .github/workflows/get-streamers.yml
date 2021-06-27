@@ -14,6 +14,12 @@ jobs:
       - name: Install deps
         run: npm install
       - name: Run script
+        env: # Or as an environment variable
+          CTFL_SPACE_ID: ${{ secrets.CTFL_SPACE_ID }}
+          CTFL_ACCESS_TOKEN: ${{ secrets.CTFL_ACCESS_TOKEN }}
+          TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
+          TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
+          VERCEL_DEPLOY_GH_ACTION_HOOK: ${{ secrets.VERCEL_DEPLOY_GH_ACTION_HOOK }}
         run: npm run getstreamers
       - name: Commit changes
         run: |
