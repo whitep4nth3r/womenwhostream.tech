@@ -78,6 +78,7 @@ async function callContentful(query) {
 
   try {
     const data = await fetch(fetchUrl, fetchOptions).then((response) => response.json());
+    console.info('data from Contentful', data);
     return data;
   } catch (error) {
     throw new Error("Could not fetch data from Contentful!");
@@ -208,6 +209,7 @@ streamerCollection(order: sys_firstPublishedAt_ASC) {
 
   try {
     const streamers = await callContentful(query);
+    console.info({ streamers });
     const mergedData = await mergeStreamersWithTwitchData(streamers.data.streamerCollection.items);
 
     mergedData.sort(sortStreamers);
@@ -230,6 +232,8 @@ streamerCollection(order: sys_firstPublishedAt_ASC) {
 
     if (newData !== currentData) {
       console.log("⏳ Writing new streamers.json file!");
+      console.info({ newData });
+
       await fs.writeFile("./scripts/data/streamers.json", JSON.stringify(newData), function (err) {
         if (err) return console.log(err);
         console.log("✅ New streamers.json file written!");

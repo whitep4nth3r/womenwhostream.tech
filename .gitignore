@@ -37,3 +37,6 @@ yarn-error.log*
 # generated at build time
 /public/sitemap.xml
 /public/robots.txt
+
+# vscode history plugin
+.history
