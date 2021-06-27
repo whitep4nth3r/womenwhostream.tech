@@ -67,6 +67,11 @@ async function callTwitch(url, accessToken) {
 async function callContentful(query) {
   const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.CTFL_SPACE_ID}`;
 
+  console.info({
+    SPACE_ID_EXISTS: !!process.env.CTFL_SPACE_ID,
+    TOKEN_EXISTS: !!process.env.CTFL_ACCESS_TOKEN
+  });
+
   const fetchOptions = {
     method: "POST",
     headers: {
