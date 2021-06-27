@@ -25,7 +25,7 @@ jobs:
               git config user.email github-actions@github.com
               git add .
               git commit -m "get-streamers.js updated the streamers.json file"
-              git push
+              git push -f origin master:stream-data
               exit 0
           else
               echo "No changes, exiting"
