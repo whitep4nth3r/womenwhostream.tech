@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: "*/10 * * * *" # every 10 minutes
+    - cron: "*/30 * * * *" # every 30 minutes
 jobs:
   build-streamers-json:
     runs-on: ubuntu-latest
