@@ -244,8 +244,8 @@ streamerCollection(order: sys_firstPublishedAt_ASC) {
         console.log("✅ New streamers.json file written!");
       });
 
-      console.log("🔥 Calling Vercel webhook!");
-      await fetch(process.env.VERCEL_DEPLOY_GH_ACTION_HOOK, { method: "POST" });
+      // console.log("🔥 Calling Vercel webhook!");
+      // await fetch(process.env.VERCEL_DEPLOY_GH_ACTION_HOOK, { method: "POST" });
     } else {
       console.log("🔥 No new data to write! Carry on!");
     }
