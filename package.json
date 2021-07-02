@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "dotenv": "^10.0.0",
+    "json-diff": "^0.5.4",
     "next": "^11.0.0",
     "next-seo": "^4.26.0",
     "next-sitemap": "^1.6.121",

@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
 const fetch = require("node-fetch");
-const fs = require("fs");
+const jsonDiff = require("json-diff");
 
 async function waitFor(seconds) {
   return await new Promise((res) => setTimeout(res, seconds * 1000));
@@ -230,19 +230,73 @@ streamerCollection(order: sys_firstPublishedAt_ASC) {
   dotenv.config();
 
   try {
-    console.log("👀 Reading current streamers.json");
-    const currentFile = await fs.readFileSync("./scripts/data/streamers.json", "utf8");
-    const currentData = JSON.parse(currentFile);
+    console.log("👀 Pulling current streamers JSON from Contentful");
+
+    const currentJson = `https://api.contentful.com/spaces/${process.env.CTFL_JSON_SPACE_ID}/environments/main/entries/${process.env.CTFL_JSON_ENTRY_ID}`;
+    const updateJson = currentJson;
+    const publishJson = `https://api.contentful.com/spaces/${process.env.CTFL_JSON_SPACE_ID}/environments/main/entries/${process.env.CTFL_JSON_ENTRY_ID}/published`;
+    let lastVersion = 0;
+
+    const currentData = await fetch(currentJson,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.CTFL_JSON_UPDATE_TOKEN}`
+        },
+      })
+      .then(r => r.json())
+      .then(d => {
+        lastVersion = d.sys.version;
+
+        return d.fields.data["en-US"];
+      });
+
     const newData = await getAllStreamers();
 
-    if (newData !== currentData) {
-      console.log("⏳ Writing new streamers.json file!");
+    if (jsonDiff.diff(currentData, newData)) {
+      console.log("⏳ Updating Contentful with new JSON data!");
       console.info({ newData });
 
-      await fs.writeFile("./scripts/data/streamers.json", JSON.stringify(newData), function (err) {
-        if (err) return console.log(err);
-        console.log("✅ New streamers.json file written!");
-      });
+      await fetch(updateJson,
+        {
+          body: JSON.stringify({
+            fields: {
+              data: {
+                "en-US": newData,
+              },
+              title: {
+                "en-US": `JSON update ${new Date().toLocaleString()}`,
+              },
+            },
+          }),
+          headers: {
+            Authorization: `Bearer ${process.env.CTFL_JSON_UPDATE_TOKEN}`,
+            "Content-Type": "application/vnd.contentful.management.v1+json",
+            "X-Contentful-Version": lastVersion,
+          },
+          method: "PUT",
+        })
+        .then(r => r.json())
+        .then(async d => {
+          if (d.sys.type === "Error")
+            return console.info({ d });
+
+          console.log("👍 Updated. Publishing JSON data on Contentful...");
+
+          await fetch(publishJson, {
+            headers: {
+              Authorization: `Bearer ${process.env.CTFL_JSON_UPDATE_TOKEN}`,
+              "X-Contentful-Version": d.sys.version,
+            },
+            method: "PUT",
+          })
+          .then(r => r.json())
+          .then(d => {
+            if (d.sys.type === "Error")
+              return console.info({ d });
+
+            console.log("✅ JSON value updated on Contentful!");
+          });
+        });
 
       // console.log("🔥 Calling Vercel webhook!");
       // await fetch(process.env.VERCEL_DEPLOY_GH_ACTION_HOOK, { method: "POST" });

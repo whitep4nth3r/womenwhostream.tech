@@ -20,24 +20,10 @@ jobs:
         env: # Or as an environment variable
           CTFL_SPACE_ID: ${{ secrets.CTFL_SPACE_ID }}
           CTFL_ACCESS_TOKEN: ${{ secrets.CTFL_ACCESS_TOKEN }}
+          CTFL_JSON_ENTRY_ID: ${{ secrets.CTFTL_JSON_ENTRY_ID }}
+          CTFL_JSON_SPACE_ID: ${{ secrets.CTFTL_JSON_SPACE_ID }}
+          CTFL_JSON_UPDATE_TOKEN: ${{ secrets.CTFL_JSON_UPDATE_TOKEN }}
           TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
           TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
           VERCEL_DEPLOY_GH_ACTION_HOOK: ${{ secrets.VERCEL_DEPLOY_GH_ACTION_HOOK }}
         run: npm run getstreamers
-      - name: Commit changes
-        run: |
-          something_changed=`git diff-index --exit-code --ignore-submodules HEAD`
-          if [ -n "$something_changed" ]
-          then
-              echo "Something changed, committing"
-              git config user.name github-actions
-              git config user.email github-actions@github.com
-              git add .
-              git commit -m "get-streamers.js updated the streamers.json file"
-              git push -f origin main:stream-data
-              exit 0
-          else
-              echo "No changes, exiting"
-              exit 0
-          fi
-        shell: bash {0}
