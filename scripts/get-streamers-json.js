@@ -69,7 +69,7 @@ async function callContentful(query) {
 
   console.info({
     SPACE_ID_EXISTS: !!process.env.CTFL_SPACE_ID,
-    TOKEN_EXISTS: !!process.env.CTFL_ACCESS_TOKEN
+    TOKEN_EXISTS: !!process.env.CTFL_ACCESS_TOKEN,
   });
 
   const fetchOptions = {
@@ -83,7 +83,7 @@ async function callContentful(query) {
 
   try {
     const data = await fetch(fetchUrl, fetchOptions).then((response) => response.json());
-    console.info('data from Contentful', data);
+    console.info("data from Contentful", data);
     return data;
   } catch (error) {
     throw new Error("Could not fetch data from Contentful!");
@@ -198,7 +198,6 @@ streamerCollection(order: sys_firstPublishedAt_ASC) {
     twitterUsername
     youtubeChannelId
     websiteUrl
-    location
     tagsCollection {
       items {
         sys {
