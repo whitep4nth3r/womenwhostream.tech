@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import GitHub from "./svg/github";
 import Twitter from "./svg/twitter";
 import YouTube from "./svg/youtube";
@@ -10,42 +9,38 @@ import ContentWrapper from "@components/ContentWrapper";
 function constructImage(isLive, streamData, twitchData, vodData) {
   if (isLive) {
     return (
-      <Image
-        src={streamData.thumbnail_url.replace("{width}", "1920").replace("{height}", "1080")}
+      <img
+        src={streamData.thumbnail_url.replace("{width}", "336").replace("{height}", "189")}
         alt={`${twitchData.display_name} on Twitch`}
         height="225"
         width="400"
-        layout="responsive"
       />
     );
   } else if (vodData !== null) {
     return (
-      <Image
-        src={vodData.thumbnail_url.replace("%{width}", "1920").replace("%{height}", "1080")}
+      <img
+        src={vodData.thumbnail_url.replace("%{width}", "336").replace("%{height}", "189")}
         alt={`${twitchData.display_name} on Twitch`}
         height="225"
         width="400"
-        layout="responsive"
       />
     );
   } else if (twitchData.offline_image_url) {
     return (
-      <Image
+      <img
         src={twitchData.offline_image_url}
         alt={`${twitchData.display_name} on Twitch`}
         height="225"
         width="400"
-        layout="responsive"
       />
     );
   } else {
     return (
-      <Image
+      <img
         src={twitchData.profile_image_url}
         alt={`${twitchData.display_name} on Twitch`}
         height="300"
         width="300"
-        layout="responsive"
       />
     );
   }
@@ -85,12 +80,11 @@ export default function Streamers({ streamers }) {
                   title={`Follow ${streamer.twitchUsername} on Twitch`}
                   className={Styles.card__twitchLink}>
                   <div className={Styles.card__twitchLink__profileImg}>
-                    <Image
+                    <img
                       src={twitchData.profile_image_url}
                       alt={`${streamer.twitchUsername} on Twitch`}
-                      height="100"
-                      width="100"
-                      layout="responsive"
+                      height="70"
+                      width="70"
                       className="border-2 border-gray-900 rounded-full"
                     />
                   </div>
