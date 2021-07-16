@@ -10,7 +10,7 @@ function constructImage(isLive, streamData, twitchData, vodData) {
   if (isLive) {
     return (
       <img
-        src={streamData.thumbnail_url.replace("{width}", "336").replace("{height}", "189")}
+        src={streamData.thumbnail_url.replace("{width}", "400").replace("{height}", "225")}
         alt={`${twitchData.display_name} on Twitch`}
         height="225"
         width="400"
@@ -19,7 +19,7 @@ function constructImage(isLive, streamData, twitchData, vodData) {
   } else if (vodData !== null) {
     return (
       <img
-        src={vodData.thumbnail_url.replace("%{width}", "336").replace("%{height}", "189")}
+        src={vodData.thumbnail_url.replace("%{width}", "400").replace("%{height}", "225")}
         alt={`${twitchData.display_name} on Twitch`}
         height="225"
         width="400"
