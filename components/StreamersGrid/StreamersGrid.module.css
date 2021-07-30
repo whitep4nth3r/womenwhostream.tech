@@ -32,6 +32,10 @@
   @apply bg-purple-twitch;
 }
 
+.card__imageHolder img {
+  @apply w-full;
+}
+
 .card__live {
   @apply rounded-lg;
   @apply absolute;
