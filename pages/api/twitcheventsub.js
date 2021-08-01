@@ -1,11 +1,78 @@
-import { autheticate, deleteAllSubscriptions } from "../../lib/Twitch";
+import {
+  autheticate,
+  createSubscriptions,
+  deleteAllSubscriptions,
+  getChannel,
+  getStream,
+  getUsersByLogin,
+  getVideo,
+} from "../../lib/Twitch";
+import { createHmac } from "crypto";
+import Contentful from "@lib/Contentful";
 
 export default async function handler(req, res) {
   try {
     var body = {};
     body.method = req.method;
     if (
-      req.headers["whst-suscriptionkey"] !== process.env.API_SUBSCRIPTION_KEY
+      req.headers["twitch-eventsub-message-type"] ===
+      "webhook_callback_verification"
+    ) {
+      // verify subscription
+      const hmac_message =
+        req.headers["twitch-eventsub-message-id"] +
+        req.headers["twitch-eventsub-message-timestamp"] +
+        Buffer.from(JSON.stringify(req.body), "utf8");
+      const signature = createHmac("sha256", process.env.TWITCH_EVENTSUB_SECRET)
+        .update(hmac_message)
+        .digest("hex");
+      if (
+        req.headers["twitch-eventsub-message-signature"] !==
+        `sha256=${signature}`
+      ) {
+        res.status(403);
+        return;
+      }
+      const challenge = req.body.challenge;
+      res.headers = { "Content-Type": "text/html" };
+      res.status(200).send(challenge);
+      return;
+    } else if (req.headers["twitch-eventsub-message-type"] === "notification") {
+      const authToken = await autheticate();
+      const twitchData = await getUsersByLogin(
+        req.body.event.broadcaster_user_login,
+        authToken
+      );
+      const streamData = await getStream(
+        req.body.event.broadcaster_user_id,
+        authToken
+      );
+      const vodData = await getVideo(
+        req.body.event.broadcaster_user_id,
+        authToken
+      );
+      await Contentful.updateStreamerByTwitchUsername(
+        req.body.event.broadcaster_user_login,
+        [
+          {
+            op: "replace",
+            path: "/fields/twitchData/en-US",
+            value: twitchData.data[0] || {},
+          },
+          {
+            op: "replace",
+            path: "/fields/streamData/en-US",
+            value: streamData.data[0] || {},
+          },
+          {
+            op: "replace",
+            path: "/fields/vodData/en-US",
+            value: vodData.data[0] || {},
+          },
+        ]
+      );
+    } else if (
+      req.headers["whst-subscriptionkey"] !== process.env.API_SUBSCRIPTION_KEY
     ) {
       body.error = "Not Authenticated";
       res.status(401).json(body);
@@ -18,6 +85,11 @@ export default async function handler(req, res) {
           body.action = req.query.action;
           if (req.query.action === "register") {
             // register event sub
+            const authToken = await autheticate();
+            await createSubscriptions(
+              authToken,
+              process.env.TWITCH_EVENTSUB_CALLBACK_URL
+            );
           } else if (req.query.action === "delete") {
             // delete all event sub registrations
             const authToken = await autheticate();
@@ -27,10 +99,11 @@ export default async function handler(req, res) {
         }
       }
     } else if (req.method === "POST") {
-      //
+      body.action = req.query.action;
     }
     res.status(200).json(body);
   } catch (error) {
-    res.status(400).json(error);
+    console.log(JSON.stringify(error));
+    res.status(400).json({ error: error });
   }
 }
