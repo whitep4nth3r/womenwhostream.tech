@@ -53,23 +53,9 @@ export default async function handler(req, res) {
       );
       await Contentful.updateStreamerByTwitchUsername(
         req.body.event.broadcaster_user_login,
-        [
-          {
-            op: "replace",
-            path: "/fields/twitchData/en-US",
-            value: twitchData.data[0] || {},
-          },
-          {
-            op: "replace",
-            path: "/fields/streamData/en-US",
-            value: streamData.data[0] || {},
-          },
-          {
-            op: "replace",
-            path: "/fields/vodData/en-US",
-            value: vodData.data[0] || {},
-          },
-        ]
+        twitchData.data[0] || {},
+        streamData.data[0] || {},
+        vodData.data[0] || {}
       );
     } else if (
       req.headers["whst-subscriptionkey"] !== process.env.API_SUBSCRIPTION_KEY
