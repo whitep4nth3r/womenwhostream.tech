@@ -4,6 +4,7 @@ import {
   deleteAllSubscriptions,
   getChannel,
   getStream,
+  getTags,
   getUsersByLogin,
   getVideo,
 } from "../../lib/Twitch";
@@ -51,11 +52,16 @@ export default async function handler(req, res) {
         req.body.event.broadcaster_user_id,
         authToken
       );
+      const tagData = await getTags(
+        req.body.event.broadcaster_user_id,
+        authToken
+      );
       await Contentful.updateStreamerByTwitchUsername(
         req.body.event.broadcaster_user_login,
         twitchData.data[0] || {},
         streamData.data[0] || {},
-        vodData.data[0] || {}
+        vodData.data[0] || {},
+        tagData.data[0] || {}
       );
     } else if (
       req.headers["whst-subscriptionkey"] !== process.env.API_SUBSCRIPTION_KEY
