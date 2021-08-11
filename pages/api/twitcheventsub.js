@@ -1,8 +1,7 @@
 import {
-  autheticate,
+  authenticate,
   createSubscriptions,
   deleteAllSubscriptions,
-  getChannel,
   getStream,
   getTags,
   getUsersByLogin,
@@ -39,7 +38,7 @@ export default async function handler(req, res) {
       res.status(200).send(challenge);
       return;
     } else if (req.headers["twitch-eventsub-message-type"] === "notification") {
-      const authToken = await autheticate();
+      const authToken = await authenticate();
       const twitchData = await getUsersByLogin(
         req.body.event.broadcaster_user_login,
         authToken
@@ -77,14 +76,14 @@ export default async function handler(req, res) {
           body.action = req.query.action;
           if (req.query.action === "register") {
             // register event sub
-            const authToken = await autheticate();
+            const authToken = await authenticate();
             await createSubscriptions(
               authToken,
               process.env.TWITCH_EVENTSUB_CALLBACK_URL
             );
           } else if (req.query.action === "delete") {
             // delete all event sub registrations
-            const authToken = await autheticate();
+            const authToken = await authenticate();
             const deleteCount = await deleteAllSubscriptions(authToken);
             body.deleted = deleteCount || 0;
           }
