@@ -1,0 +1,1 @@
+[{"kind":1,"language":"markdown","value":"# register subs for user","outputs":[]},{"kind":2,"language":"rest-book","value":"POST http://localhost:3000/api/twitch/register?login=itsmeolli3\r\nwhst-subscriptionkey: $SECRETS.whstsubscriptionkey","outputs":[{"mime":"application/vnd.code.notebook.error","value":{"name":"Error","message":"timeout of 10000ms exceeded"}}]}]
