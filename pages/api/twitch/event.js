@@ -10,24 +10,23 @@ import Contentful from "@lib/Contentful";
 
 export default async function handler(req, res) {
   try {
-    // authorise incoming message
-    const verified = verifyMessage(
-      req.headers["twitch-eventsub-message-id"],
-      req.headers["twitch-eventsub-message-timestamp"],
-      req.body,
-      req.headers["twitch-eventsub-message-signature"]
-    );
-    if (!verified) {
-      console.log("Message signature failed verification!");
-      res.status(401).send();
-      return;
-    }
-
     // eventsub registration verification callback
     if (
       req.headers["twitch-eventsub-message-type"] ===
       "webhook_callback_verification"
     ) {
+      // authorise incoming message
+      const verified = verifyMessage(
+        req.headers["twitch-eventsub-message-id"],
+        req.headers["twitch-eventsub-message-timestamp"],
+        req.body,
+        req.headers["twitch-eventsub-message-signature"]
+      );
+      if (!verified) {
+        console.log("Message signature failed verification!");
+        res.status(401).send();
+        return;
+      }
       const challenge = req.body.challenge;
       res.headers = { "Content-Type": "text/html" };
       res.status(200).send(challenge);
