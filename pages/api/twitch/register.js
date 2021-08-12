@@ -1,4 +1,5 @@
 import { authenticate, createSubscription, getUsersByLogin } from "@lib/Twitch";
+import Contentful from "@lib/Contentful";
 
 export default async function handler(req, res) {
   try {
@@ -10,7 +11,11 @@ export default async function handler(req, res) {
       return;
     }
 
-    const username = req.query.login;
+    let username = req.query.login;
+    if (!username && req.body.sys.id) {
+      username = await Contentful.getTwitchUserName(req.body.sys.id);
+    }
+
     const callbackurl = process.env.TWITCH_EVENTSUB_CALLBACK_URL;
     const authToken = await authenticate();
     const users = await getUsersByLogin(username, authToken);

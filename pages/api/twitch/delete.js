@@ -1,3 +1,4 @@
+import Contentful from "@lib/Contentful";
 import {
   authenticate,
   deleteSubscription,
@@ -15,8 +16,13 @@ export default async function handler(req, res) {
       return;
     }
 
+    let username = req.query.login;
+    if (!username && req.body.sys.id) {
+      username = await Contentful.getTwitchUserName(req.body.sys.id);
+    }
+
     const authToken = await authenticate();
-    const username = req.query.login;
+
     const users = await getUsersByLogin(username, authToken);
     const user = users.data[0];
     const userid = user.id;
@@ -31,6 +37,7 @@ export default async function handler(req, res) {
   } catch (error) {
     console.log(error);
     res.status(500).send();
+    return;
   }
 
   res.status(200).send();
