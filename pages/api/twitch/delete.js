@@ -28,7 +28,10 @@ export default async function handler(req, res) {
     const userid = user.id;
     const subs = await getAllSubscriptions(authToken);
     const substodelete = subs.data.filter((d) => {
-      return d.condition.broadcaster_user_id == userid;
+      return (
+        d.condition.broadcaster_user_id === userid ||
+        d.condition.user_id === userid
+      );
     });
     for (let index = 0; index < substodelete.length; index++) {
       const sid = substodelete[index];
