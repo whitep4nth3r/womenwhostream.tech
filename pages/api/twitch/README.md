@@ -26,13 +26,13 @@ The publish stream webhook should be setup as follows:
 | ------------ | ---------------------------------------------------------------------------------------------------- |
 | Name         | Streamer Publish                                                                                     |
 | URL          | https://my-app-name.vercel.app/api/twitch/register                                                   |
-| Triggers     | [x] Trigger for specific events                                                                      |
+| Triggers     | ✅ Trigger for specific events                                                                       |
 | Events       | Entry > Publish                                                                                      |
 | Filter       | Environment Id equals master                                                                         |
 | Filter       | Content Type Id equals streamer                                                                      |
 | Header       | Secret Header "whst-subscriptionkey" with the same value as the API_SUBSCRIPTION_KEY environment var |
 | Content Type | application/json                                                                                     |
-| Payload      | [x] Use default payload                                                                              |
+| Payload      | ✅ Use default payload                                                                               |
 
 ### Unpublish Streamer Webhook
 
@@ -42,10 +42,10 @@ The unpublish stream webhook should be setup as follows:
 | ------------ | ---------------------------------------------------------------------------------------------------- |
 | Name         | Streamer Unublish                                                                                    |
 | URL          | https://my-app-name.vercel.app/api/twitch/delete                                                     |
-| Triggers     | [x] Trigger for specific events                                                                      |
+| Triggers     | ✅ Trigger for specific events                                                                       |
 | Events       | Entry > Unpublish                                                                                    |
 | Filter       | Environment Id equals master                                                                         |
 | Filter       | Content Type Id equals streamer                                                                      |
 | Header       | Secret Header "whst-subscriptionkey" with the same value as the API_SUBSCRIPTION_KEY environment var |
 | Content Type | application/json                                                                                     |
-| Payload      | [x] Use default payload                                                                              |
+| Payload      | ✅ Use default payload                                                                               |
