@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Styles from "./MainLayout.module.css";
 
-export default function MainLayout({ tags, children, selectedTag }) {
+export default function MainLayout({ children, selectedTag }) {
   const date = new Date();
   return (
     <div className={Styles.mainLayout}>
@@ -25,7 +25,7 @@ export default function MainLayout({ tags, children, selectedTag }) {
             </Link>
           </li>
         </ol> */}
-        <ul className={Styles.mainLayout__tags}>
+        {/* <ul className={Styles.mainLayout__tags}>
           <li>
             <Link href="/">
               <a
@@ -50,7 +50,7 @@ export default function MainLayout({ tags, children, selectedTag }) {
               </li>
             );
           })}
-        </ul>
+        </ul> */}
       </header>
 
       <div className={Styles.mainLayout__body}>

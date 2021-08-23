@@ -11,6 +11,16 @@ export default {
     site: "https://womenwhostream.tech",
     cardType: "summary_large_image",
   },
+  additionalMetaTags: [
+    {
+      name: "msapplication-TileColor",
+      content: "#603cba",
+    },
+    {
+      name: "theme-color",
+      content: "#ffffff",
+    },
+  ],
   additionalLinkTags: [
     {
       rel: "preconnect",
@@ -51,14 +61,6 @@ export default {
       href: "/apple-touch-icon.png",
       sizes: "180x180",
       type: "image/png",
-    },
-    {
-      name: "msapplication-TileColor",
-      content: "#603cba",
-    },
-    {
-      name: "theme-color",
-      content: "#ffffff",
     },
   ],
 };
