@@ -10,7 +10,9 @@ function constructImage(isLive, streamData, twitchData, vodData) {
   if (isLive) {
     return (
       <img
-        src={streamData.thumbnail_url.replace("{width}", "400").replace("{height}", "225")}
+        src={streamData.thumbnail_url
+          .replace("{width}", "400")
+          .replace("{height}", "225")}
         alt={`${twitchData.display_name} on Twitch`}
         height="225"
         width="400"
@@ -19,7 +21,9 @@ function constructImage(isLive, streamData, twitchData, vodData) {
   } else if (vodData !== null) {
     return (
       <img
-        src={vodData.thumbnail_url.replace("%{width}", "400").replace("%{height}", "225")}
+        src={vodData.thumbnail_url
+          .replace("%{width}", "400")
+          .replace("%{height}", "225")}
         alt={`${twitchData.display_name} on Twitch`}
         height="225"
         width="400"
@@ -52,8 +56,7 @@ export default function Streamers({ streamers }) {
       <div className={Styles.cardGrid}>
         {streamers.map((streamer) => {
           if (streamer.twitchData) {
-            const { vodData, twitchData, streamData } = streamer;
-            const isLive = streamData !== null;
+            const { isLive, vodData, twitchData, streamData } = streamer;
 
             return (
               <div key={streamer.sys.id} className={Styles.card}>
@@ -64,7 +67,9 @@ export default function Streamers({ streamers }) {
                       <p className={Styles.card__live}>
                         <span>LIVE</span>
                       </p>
-                      <p className={Styles.card__streamTitle}>{streamData.title}</p>
+                      <p className={Styles.card__streamTitle}>
+                        {streamData.title}
+                      </p>
                       <h2 className={Styles.card__streamViewers}>
                         {streamData.viewer_count} viewers
                       </h2>
@@ -78,7 +83,8 @@ export default function Streamers({ streamers }) {
                     target="_blank"
                     rel="nofollow noopener"
                     title={`Follow ${streamer.twitchUsername} on Twitch`}
-                    className={Styles.card__twitchLink}>
+                    className={Styles.card__twitchLink}
+                  >
                     <div className={Styles.card__twitchLink__profileImg}>
                       <img
                         src={twitchData.profile_image_url}
@@ -92,9 +98,13 @@ export default function Streamers({ streamers }) {
                   </a>
                   <p className={Styles.card__bio}>{twitchData.description}</p>
                   <div className={Styles.card__tags}>
-                    {streamer.tagData.map((tag) => (
-                      <span className={Styles.card__tag}>{tag.localization_names["en-us"]}</span>
-                    ))}
+                    {streamer.tagData && streamer.tagData.map
+                      ? streamer.tagData.map((tag) => (
+                          <span className={Styles.card__tag}>
+                            {tag.localization_names["en-us"]}
+                          </span>
+                        ))
+                      : null}
                   </div>
                   <div className={Styles.card__socials}>
                     {streamer.twitterUsername && (
@@ -103,7 +113,8 @@ export default function Streamers({ streamers }) {
                         target="_blank"
                         aria-label={`${streamer.twitterUsername} on Twitter`}
                         rel="nofollow noopener"
-                        className={Styles.card__socials__link}>
+                        className={Styles.card__socials__link}
+                      >
                         <Twitter />
                       </a>
                     )}
@@ -113,7 +124,8 @@ export default function Streamers({ streamers }) {
                         target="_blank"
                         aria-label={`${streamer.githubUsername} on GitHub`}
                         rel="nofollow noopener"
-                        className={Styles.card__socials__link}>
+                        className={Styles.card__socials__link}
+                      >
                         <GitHub />
                       </a>
                     )}
@@ -123,7 +135,8 @@ export default function Streamers({ streamers }) {
                         target="_blank"
                         aria-label={`${streamer.twitchUsername} on YouTube`}
                         rel="nofollow noopener"
-                        className={Styles.card__socials__link}>
+                        className={Styles.card__socials__link}
+                      >
                         <YouTube />
                       </a>
                     )}
@@ -133,7 +146,8 @@ export default function Streamers({ streamers }) {
                         target="_blank"
                         rel="nofollow noopener"
                         title={`Visit ${streamer.twitchUsername}'s website`}
-                        className={Styles.card__socials__link}>
+                        className={Styles.card__socials__link}
+                      >
                         <ExternalLink />
                       </a>
                     )}
