@@ -5,6 +5,7 @@ import {
   getTags,
   getUsersByLogin,
   getVideo,
+  getUsersById,
 } from "@lib/Twitch";
 import Contentful from "@lib/Contentful";
 
@@ -35,11 +36,20 @@ export default async function handler(req, res) {
 
     // eventsub event callback
     if (req.headers["twitch-eventsub-message-type"] === "notification") {
+      console.log(req.body);
       const authToken = await authenticate();
-      const twitchData = await getUsersByLogin(
-        req.body.event.broadcaster_user_login,
-        authToken
-      );
+      let twitchData = undefined;
+      if (req.body.event.broadcaster_user_login || req.body.event.user_login) {
+        twitchData = await getUsersByLogin(
+          req.body.event.broadcaster_user_login || req.body.event.user_login,
+          authToken
+        );
+      } else {
+        twitchData = await getUsersById(
+          req.body.event.broadcaster_user_id || req.body.event.user_id,
+          authToken
+        );
+      }
       const streamData = await getStream(
         req.body.event.broadcaster_user_id,
         authToken
@@ -53,11 +63,13 @@ export default async function handler(req, res) {
         authToken
       );
       await Contentful.updateStreamerByTwitchUsername(
-        req.body.event.broadcaster_user_login,
+        twitchData.data[0].login,
         twitchData.data[0] || {},
-        streamData.data[0] || {},
-        vodData.data[0] || {},
-        tagData.data || {}
+        streamData && streamData.data && streamData.data[0]
+          ? streamData.data[0]
+          : {},
+        vodData && vodData.data && vodData.data[0] ? vodData.data[0] : {},
+        tagData && tagData.data ? tagData.data : {}
       );
       res.status(200).send();
       return;
