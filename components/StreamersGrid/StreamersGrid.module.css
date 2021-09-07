@@ -74,18 +74,6 @@
   }
 }
 
-.card__streamViewers {
-  @apply text-white;
-  @apply bg-gray-900;
-  @apply text-xs;
-  @apply rounded-lg;
-  @apply p-2;
-  @apply absolute;
-  @apply left-1.5;
-  @apply top-1.5;
-  @apply shadow-md;
-}
-
 .card__twitchLink {
   @apply flex;
   @apply flex-row;

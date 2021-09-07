@@ -3,7 +3,7 @@ import StreamersGrid from "@components/StreamersGrid";
 import MainLayout from "@components/MainLayout";
 import { NextSeo } from "next-seo";
 
-export default function Index({ streamers, tags }) {
+export default function Index({ onlineStreamers, offlineStreamers }) {
   return (
     <>
       <NextSeo
@@ -13,7 +13,8 @@ export default function Index({ streamers, tags }) {
 
       <main>
         <MainLayout>
-          <StreamersGrid streamers={streamers} />
+          <StreamersGrid streamers={onlineStreamers} />
+          <StreamersGrid streamers={offlineStreamers} />
         </MainLayout>
       </main>
     </>
@@ -21,11 +22,13 @@ export default function Index({ streamers, tags }) {
 }
 
 export async function getStaticProps() {
-  const streamers = await Contentful.getAllStreamers();
+  const onlineStreamers = await Contentful.getOnlineStreamers();
+  const offlineStreamers = await Contentful.getOfflineStreamers();
 
   return {
     props: {
-      streamers,
+      onlineStreamers,
+      offlineStreamers,
     },
     revalidate: 1,
   };

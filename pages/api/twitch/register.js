@@ -23,8 +23,6 @@ export default async function handler(req, res) {
     const userid = user.id;
     await createSubscription(authToken, "stream.online", userid, callbackurl);
     await createSubscription(authToken, "stream.offline", userid, callbackurl);
-    await createSubscription(authToken, "user.update", userid, callbackurl);
-    await createSubscription(authToken, "channel.update", userid, callbackurl);
   } catch (error) {
     console.log(error);
     res.status(500).send();
