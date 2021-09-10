@@ -43,3 +43,5 @@ yarn-error.log*
 
 # contentful exports (Ollie 😎)
 .export
+.restbook/
+.vscode/
