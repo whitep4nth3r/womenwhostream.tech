@@ -11,13 +11,14 @@ import Contentful from "@lib/Contentful";
 export default async function handler(req, res) {
   try {
     // authorise
-    if (req.headers["whst-subscriptionkey"] !== process.env.API_SUBSCRIPTION_KEY) {
+    if (
+      req.headers["whst-subscriptionkey"] !== process.env.API_SUBSCRIPTION_KEY
+    ) {
       res.status(401).json();
       return;
     }
 
     let username = req.query.login;
-
     if (!username && req.body.sys.id) {
       username = await Contentful.getTwitchUserName(req.body.sys.id);
     }
@@ -33,8 +34,7 @@ export default async function handler(req, res) {
       twitchData.data[0] || {},
       streamData.data[0] || {},
       vodData.data[0] || {},
-      tagData.data || {},
-      false,
+      tagData.data || {}
     );
     res.status(200).send();
     return;
