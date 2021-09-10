@@ -1,0 +1,6 @@
+.footer {
+  @apply text-white;
+  @apply block;
+  @apply text-center;
+  @apply my-16;
+}

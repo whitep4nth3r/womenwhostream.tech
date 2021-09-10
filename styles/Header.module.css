@@ -1,0 +1,24 @@
+.header {
+  @apply px-8;
+  @apply mt-8;
+  @apply mb-16;
+}
+
+.header__title {
+  font-size: clamp(2rem, 4vw, 4rem);
+  @apply uppercase;
+  @apply font-heading;
+  @apply text-center;
+  @apply text-white;
+  @apply leading-snug;
+  @apply mb-16;
+}
+
+.header__subtitle {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  @apply text-white;
+  @apply text-center;
+  @apply leading-snug;
+  max-width: 800px;
+  @apply m-auto;
+}

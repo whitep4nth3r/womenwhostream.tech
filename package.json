@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "getstreamers": "node ./scripts/get-streamers-json.js",
     "dev": "next dev",
     "build": "next build",
     "postbuild": "next-sitemap",
-    "start": "next start"
+    "start": "next start",
+    "vercel:dev": "npx vercel dev"
   },
   "dependencies": {
+    "contentful-management": "^7.31.0",
     "dotenv": "^10.0.0",
     "next": "^11.0.0",
     "next-seo": "^4.26.0",

@@ -1,35 +1,37 @@
 import Contentful from "@lib/Contentful";
-import Streamers from "@lib/Streamers";
 import StreamersGrid from "@components/StreamersGrid";
-import MainLayout from "@components/MainLayout";
+import Footer from "@components/Footer";
+import Header from "@components/Header";
 import { NextSeo } from "next-seo";
 
-export default function Index({ streamers, tags }) {
+export default function Index({ onlineStreamers, offlineStreamers }) {
   return (
     <>
       <NextSeo
         title="Home"
-        description={`Women Who Stream Tech is a directory of Twitch tech streamers who identify as women.`}
+        description={`Women Who Stream Tech is a directory of Twitch science, tech, software and game development streamers.`}
       />
 
+      <Header />
+
       <main>
-        <MainLayout tags={tags}>
-          <StreamersGrid streamers={streamers} />
-        </MainLayout>
+        <StreamersGrid streamers={[...onlineStreamers, ...offlineStreamers]} />
       </main>
+
+      <Footer />
     </>
   );
 }
 
 export async function getStaticProps() {
-  const streamers = await Streamers.getAll();
-  const tags = await Contentful.getTags();
+  const onlineStreamers = await Contentful.getOnlineStreamers();
+  const offlineStreamers = await Contentful.getOfflineStreamers();
 
   return {
     props: {
-      streamers,
-      tags,
+      onlineStreamers,
+      offlineStreamers,
     },
-    revalidate: 5,
+    revalidate: 1,
   };
 }

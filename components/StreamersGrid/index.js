@@ -3,8 +3,7 @@ import GitHub from "./svg/github";
 import Twitter from "./svg/twitter";
 import YouTube from "./svg/youtube";
 import ExternalLink from "./svg/externallink";
-import Styles from "./StreamersGrid.module.css";
-import ContentWrapper from "@components/ContentWrapper";
+import Styles from "@styles/StreamersGrid.module.css";
 
 function constructImage(isLive, streamData, twitchData, vodData) {
   if (isLive) {
@@ -48,26 +47,21 @@ function constructImage(isLive, streamData, twitchData, vodData) {
 
 export default function Streamers({ streamers }) {
   return (
-    <ContentWrapper>
-      <div className={Styles.cardGrid}>
-        {streamers.map((streamer) => {
-          const { vodData, twitchData, streamData } = streamer;
-          const isLive = streamData !== null;
+    <div className={Styles.cardGrid}>
+      {streamers.map((streamer) => {
+        if (streamer.twitchData) {
+          const { isLive, vodData, twitchData, streamData } = streamer;
 
           return (
             <div key={streamer.sys.id} className={Styles.card}>
               <div className={Styles.card__imageHolder}>
                 {constructImage(isLive, streamData, twitchData, vodData)}
-
                 {isLive && (
                   <>
                     <p className={Styles.card__live}>
                       <span>LIVE</span>
                     </p>
                     <p className={Styles.card__streamTitle}>{streamData.title}</p>
-                    <h2 className={Styles.card__streamViewers}>
-                      {streamData.viewer_count} viewers
-                    </h2>
                   </>
                 )}
               </div>
@@ -85,19 +79,23 @@ export default function Streamers({ streamers }) {
                       alt={`${streamer.twitchUsername} on Twitch`}
                       height="70"
                       width="70"
-                      className="border-2 border-gray-900 rounded-full"
                     />
                   </div>
                   <span>{streamer.twitchUsername}</span>
                 </a>
                 <p className={Styles.card__bio}>{twitchData.description}</p>
-                <div className={Styles.card__tags}>
-                  {streamer.tagsCollection.items.map((tag) => (
-                    <Link href={`/${tag.slug}`} key={tag.sys.id}>
-                      <a className={Styles.card__tag}>{tag.name}</a>
-                    </Link>
-                  ))}
-                </div>
+
+                {isLive && (
+                  <div className={Styles.card__tags}>
+                    {streamer.tagData && streamer.tagData.map
+                      ? streamer.tagData.map((tag) => (
+                          <span key={tag.localization_names["en-us"]} className={Styles.card__tag}>
+                            {tag.localization_names["en-us"]}
+                          </span>
+                        ))
+                      : null}
+                  </div>
+                )}
                 <div className={Styles.card__socials}>
                   {streamer.twitterUsername && (
                     <a
@@ -143,8 +141,10 @@ export default function Streamers({ streamers }) {
               </div>
             </div>
           );
-        })}
-      </div>
-    </ContentWrapper>
+        } else {
+          return null;
+        }
+      })}
+    </div>
   );
 }
