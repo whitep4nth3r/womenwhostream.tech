@@ -11,9 +11,7 @@ import Contentful from "@lib/Contentful";
 export default async function handler(req, res) {
   try {
     // authorise
-    if (
-      req.headers["whst-subscriptionkey"] !== process.env.API_SUBSCRIPTION_KEY
-    ) {
+    if (req.headers["whst-subscriptionkey"] !== process.env.API_SUBSCRIPTION_KEY) {
       res.status(401).json();
       return;
     }
@@ -34,7 +32,8 @@ export default async function handler(req, res) {
           twitchData.data[0] || {},
           streamData.data[0] || {},
           vodData.data[0] || {},
-          tagData.data || {}
+          tagData.data || {},
+          false,
         );
         console.log(`Data refreshed for ${username}`);
       } catch (error) {
