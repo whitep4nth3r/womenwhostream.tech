@@ -1,9 +1,11 @@
 import Contentful from "@lib/Contentful";
 import StreamersGrid from "@components/StreamersGrid";
-import MainLayout from "@components/MainLayout";
 import { NextSeo } from "next-seo";
+import Link from "next/link";
 
 export default function Index({ onlineStreamers, offlineStreamers }) {
+  function filterStreamers() {}
+
   return (
     <>
       <NextSeo
@@ -11,12 +13,22 @@ export default function Index({ onlineStreamers, offlineStreamers }) {
         description={`Women Who Stream Tech is a directory of Twitch tech streamers who identify as women.`}
       />
 
+      <header>
+        <Link href="/">
+          <a aria-label="View all Women Who Stream Tech">
+            <h1>Women Who Stream Tech</h1>
+          </a>
+        </Link>
+      </header>
+
       <main>
-        <MainLayout>
-          <StreamersGrid streamers={onlineStreamers} />
-          <StreamersGrid streamers={offlineStreamers} />
-        </MainLayout>
+        <h2>Online</h2>
+        <StreamersGrid streamers={onlineStreamers} />
+        <h2>Offline</h2>
+        <StreamersGrid streamers={offlineStreamers} />
       </main>
+
+      <footer>FOOTER HERE</footer>
     </>
   );
 }

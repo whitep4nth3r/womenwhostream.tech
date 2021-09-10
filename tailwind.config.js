@@ -15,6 +15,7 @@ module.exports = {
           twitch: "#9146ff",
         },
         gray: {
+          darkest: "#000000",
           github: "#333333",
         },
       },

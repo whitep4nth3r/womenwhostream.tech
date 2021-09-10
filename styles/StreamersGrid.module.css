@@ -1,10 +1,11 @@
 .cardGrid {
   @apply grid;
-  @apply gap-8;
+  @apply gap-4;
   @apply sm:grid-cols-1;
-  @apply md:grid-cols-1;
-  @apply lg:grid-cols-2;
-  @apply xl:grid-cols-3;
+  @apply md:grid-cols-2;
+  @apply lg:grid-cols-3;
+  @apply xl:grid-cols-4;
+  @apply mb-8;
 }
 
 .card {
@@ -12,11 +13,9 @@
   @apply flex-col;
   @apply items-stretch;
   @apply overflow-hidden;
-  @apply border;
-  @apply border-gray-300;
-  @apply rounded-lg;
   @apply relative;
   @apply shadow-md;
+  @apply bg-gray-900;
 }
 
 .card__inner {
@@ -64,7 +63,7 @@
   .card__streamTitle {
     @apply block;
     @apply absolute;
-    @apply bg-gray-900;
+    @apply bg-purple-twitch;
     @apply text-white;
     @apply py-3;
     @apply px-4;
@@ -86,6 +85,7 @@
   @apply focus:ring-yellow-400;
   @apply rounded-lg;
   @apply font-heading;
+  @apply text-white;
 }
 
 .card__twitchLink__profileImg {
@@ -98,6 +98,12 @@
   @apply justify-items-center;
   @apply relative;
   @apply w-24;
+}
+
+.card__twitchLink__profileImg img {
+  @apply rounded-full;
+  @apply border-white;
+  @apply border-2;
 }
 
 .card__tags {
@@ -114,9 +120,9 @@
   @apply px-4;
   @apply py-2;
   @apply m-1;
-  @apply bg-gray-900;
+  @apply bg-purple-twitch;
   @apply border-2;
-  @apply border-gray-500;
+  @apply border-white;
   @apply rounded-full;
   @apply text-gray-50;
   @apply text-sm;
@@ -142,7 +148,7 @@
   @apply px-2;
   @apply rounded-lg;
   @apply justify-items-center;
-  @apply text-gray-500;
+  @apply text-white;
   @apply focus:outline-none;
   @apply focus:ring-4;
   @apply focus:ring-yellow-400;
@@ -150,4 +156,5 @@
 
 .card__bio {
   @apply mb-8;
+  @apply text-white;
 }
