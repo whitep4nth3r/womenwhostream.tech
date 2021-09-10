@@ -22,7 +22,6 @@
   @apply flex;
   @apply flex-col;
   @apply flex-grow;
-  @apply p-4;
 }
 
 .card__imageHolder {
@@ -78,14 +77,17 @@
   @apply flex-row;
   @apply items-center;
   @apply mb-4;
-  @apply text-xl;
+  @apply mt-4;
+  @apply bg-gray-900;
+  @apply text-white;
   @apply justify-items-center;
   @apply focus:outline-none;
-  @apply focus:ring-4;
-  @apply focus:ring-yellow-400;
-  @apply rounded-lg;
+  @apply focus:bg-white;
+  @apply focus:text-gray-900;
   @apply font-heading;
-  @apply text-white;
+  @apply text-xl;
+  @apply px-4;
+  @apply py-2;
 }
 
 .card__twitchLink__profileImg {
@@ -111,6 +113,7 @@
   @apply flex-wrap;
   @apply justify-start;
   @apply my-2;
+  @apply p-4;
 }
 
 .card__tag {
@@ -128,7 +131,7 @@
   @apply text-sm;
   @apply font-normal;
   @apply focus:outline-none;
-  @apply focus:ring-4;
+  @apply focus:ring-8;
   @apply focus:ring-yellow-400;
 }
 
@@ -138,7 +141,7 @@
   @apply items-end;
   @apply justify-end;
   @apply flex-grow;
-  @apply mt-4;
+  @apply p-4;
 }
 
 .card__socials__link {
@@ -155,6 +158,6 @@
 }
 
 .card__bio {
-  @apply mb-8;
   @apply text-white;
+  @apply p-4;
 }

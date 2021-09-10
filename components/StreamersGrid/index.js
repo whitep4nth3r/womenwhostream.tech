@@ -84,15 +84,18 @@ export default function Streamers({ streamers }) {
                   <span>{streamer.twitchUsername}</span>
                 </a>
                 <p className={Styles.card__bio}>{twitchData.description}</p>
-                <div className={Styles.card__tags}>
-                  {streamer.tagData && streamer.tagData.map
-                    ? streamer.tagData.map((tag) => (
-                        <span key={tag.localization_names["en-us"]} className={Styles.card__tag}>
-                          {tag.localization_names["en-us"]}
-                        </span>
-                      ))
-                    : null}
-                </div>
+
+                {isLive && (
+                  <div className={Styles.card__tags}>
+                    {streamer.tagData && streamer.tagData.map
+                      ? streamer.tagData.map((tag) => (
+                          <span key={tag.localization_names["en-us"]} className={Styles.card__tag}>
+                            {tag.localization_names["en-us"]}
+                          </span>
+                        ))
+                      : null}
+                  </div>
+                )}
                 <div className={Styles.card__socials}>
                   {streamer.twitterUsername && (
                     <a
