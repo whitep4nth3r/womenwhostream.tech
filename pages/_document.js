@@ -9,7 +9,13 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Sora:wght@400&family=Source+Sans+Pro:ital,wght@0,400;1,400&display=swap"
+            rel="stylesheet"
+          />
+          <meta name="monetization" content="$ilp.uphold.com/J7y7wkRezRYL" />
+        </Head>
         <body>
           <Main />
           <NextScript />
