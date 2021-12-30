@@ -34,7 +34,8 @@ export default async function handler(req, res) {
       twitchData.data[0] || {},
       streamData.data[0] || {},
       vodData.data[0] || {},
-      tagData.data || {}
+      tagData.data || {},
+      req.query.publish || false
     );
     res.status(200).send();
     return;
