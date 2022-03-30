@@ -1,11 +1,34 @@
-import Link from "next/link";
+// import Link from "next/link";
 import GitHub from "./svg/github";
 import Twitter from "./svg/twitter";
 import YouTube from "./svg/youtube";
 import ExternalLink from "./svg/externallink";
 import Styles from "@styles/StreamersGrid.module.css";
 
+function getVodThreshold(broadcasterType, date) {
+  const oneDay = 86400000;
+
+  switch (broadcasterType) {
+    case "partner":
+      return date + oneDay * 60;
+    case "affiliate":
+      return date + oneDay * 14;
+    default:
+      return date + oneDay * 14;
+  }
+}
+
 function constructImage(isLive, streamData, twitchData, vodData) {
+  const broadcasterType = twitchData.broadcaster_type;
+
+  const vodCreated_timestamp = Date.parse(vodData?.created_at) || null;
+  const vodCreated_date = new Date(vodCreated_timestamp).getTime();
+  const latestDateVodAvailable = getVodThreshold(broadcasterType, vodCreated_date);
+
+  const now = new Date();
+  const now_timestamp = now.getTime();
+  const thumbnailAvailable = latestDateVodAvailable > now_timestamp;
+
   if (isLive) {
     return (
       <img
@@ -15,7 +38,7 @@ function constructImage(isLive, streamData, twitchData, vodData) {
         width="400"
       />
     );
-  } else if (vodData !== null) {
+  } else if (vodData !== null && thumbnailAvailable) {
     return (
       <img
         src={vodData.thumbnail_url.replace("%{width}", "400").replace("%{height}", "225")}
@@ -26,21 +49,11 @@ function constructImage(isLive, streamData, twitchData, vodData) {
     );
   } else if (twitchData.offline_image_url) {
     return (
-      <img
-        src={twitchData.offline_image_url}
-        alt={`${twitchData.display_name} on Twitch`}
-        height="225"
-        width="400"
-      />
+      <img src={twitchData.offline_image_url} alt={`${twitchData.display_name} on Twitch`} height="225" width="400" />
     );
   } else {
     return (
-      <img
-        src={twitchData.profile_image_url}
-        alt={`${twitchData.display_name} on Twitch`}
-        height="300"
-        width="300"
-      />
+      <img src={twitchData.profile_image_url} alt={`${twitchData.display_name} on Twitch`} height="300" width="300" />
     );
   }
 }
