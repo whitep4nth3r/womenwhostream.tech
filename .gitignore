@@ -45,3 +45,5 @@ yarn-error.log*
 .export
 .restbook/
 .vscode/
+# Local Netlify folder
+.netlify
