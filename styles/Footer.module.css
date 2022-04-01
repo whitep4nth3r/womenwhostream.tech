@@ -1,6 +1,7 @@
 .footer {
-  @apply text-white;
-  @apply block;
-  @apply text-center;
-  @apply my-16;
+  color: #ffffff;
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }

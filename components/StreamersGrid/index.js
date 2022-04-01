@@ -70,12 +70,9 @@ export default function Streamers({ streamers }) {
               <div className={Styles.card__imageHolder}>
                 {constructImage(isLive, streamData, twitchData, vodData)}
                 {isLive && (
-                  <>
-                    <p className={Styles.card__live}>
-                      <span>LIVE</span>
-                    </p>
-                    <p className={Styles.card__streamTitle}>{streamData.title}</p>
-                  </>
+                  <p className={Styles.card__live}>
+                    <span>LIVE</span>
+                  </p>
                 )}
               </div>
 
@@ -96,8 +93,8 @@ export default function Streamers({ streamers }) {
                   </div>
                   <span>{streamer.twitchUsername}</span>
                 </a>
+                {isLive && <p className={Styles.card__streamTitle}>LIVE: {streamData.title}</p>}
                 <p className={Styles.card__bio}>{twitchData.description}</p>
-
                 {isLive && (
                   <div className={Styles.card__tags}>
                     {streamer.tagData && streamer.tagData.map

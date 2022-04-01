@@ -1,38 +1,40 @@
 .header {
-  @apply px-8;
-  @apply mt-8;
-  @apply mb-16;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .header__title {
   font-size: clamp(2rem, 4vw, 4rem);
-  @apply uppercase;
-  @apply font-heading;
-  @apply text-center;
-  @apply text-white;
-  @apply leading-snug;
-  @apply mb-16;
+  text-transform: uppercase;
+  font-family: Sora, sans-serif;
+  text-align: center;
+  color: #ffffff;
+  line-height: 1.375;
+  margin-bottom: 1rem;
 }
 
 .header__subtitle {
   font-size: clamp(1.5rem, 2vw, 2rem);
-  @apply text-white;
-  @apply text-center;
-  @apply leading-snug;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.375;
   max-width: 800px;
-  @apply m-auto;
+  margin: auto;
   margin-bottom: 2rem;
 }
 
 .header__subtitleBottom {
   font-size: 1.2rem;
-  @apply text-white;
-  @apply text-center;
-  @apply leading-snug;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.375;
   max-width: 800px;
-  @apply m-auto;
+  margin: auto;
 }
 
 .header__subtitleLink {
   text-decoration: underline;
+  color: inherit;
 }
