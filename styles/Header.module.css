@@ -21,4 +21,18 @@
   @apply leading-snug;
   max-width: 800px;
   @apply m-auto;
+  margin-bottom: 2rem;
+}
+
+.header__subtitleBottom {
+  font-size: 1.2rem;
+  @apply text-white;
+  @apply text-center;
+  @apply leading-snug;
+  max-width: 800px;
+  @apply m-auto;
+}
+
+.header__subtitleLink {
+  text-decoration: underline;
 }

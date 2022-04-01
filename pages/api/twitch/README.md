@@ -1,8 +1,8 @@
 # Serverless Function Configuration
 
-## Vercel Environment Vars
+## Environment Vars
 
-The following environment vars should be setup in vercel:
+The following environment vars should be setup in Netlify:
 
 | Variable Name                | Description                                            | Example                                                                                                        |
 | ---------------------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- |

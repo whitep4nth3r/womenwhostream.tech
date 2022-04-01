@@ -7,6 +7,13 @@ export default function Header() {
       <p className={Styles.header__subtitle}>
         Welcome to a directory of Twitch science, tech, software and game development streamers.
       </p>
+      <p className={Styles.header__subtitleBottom}>
+        This site is really broken. If you'd like to help fix it, join{" "}
+        <a className={Styles.header__subtitleLink} target="_blank" href="https://discord.gg/theclaw">
+          The Claw Discord
+        </a>{" "}
+        and say hello.
+      </p>
     </header>
   );
 }
