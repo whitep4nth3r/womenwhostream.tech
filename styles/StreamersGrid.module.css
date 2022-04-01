@@ -36,9 +36,9 @@
 .card__live {
   border-radius: 0.5rem;
   position: absolute;
-  padding: 1px 3px;
-  right: 1.5px;
-  top: 1.5px;
+  padding: 0.125rem 0.25rem;
+  right: 0.25rem;
+  top: 0.25rem;
   font-weight: bold;
   border: 2px solid white;
   background-color: #e91916;

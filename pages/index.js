@@ -11,7 +11,7 @@ export default function Index({ onlineStreamers, offlineStreamers }) {
         title="Home"
         description={`Women Who Stream Tech is a directory of Twitch science, tech, software and game development streamers.`}
       />
-      <Header />
+      <Header onlineCount={onlineStreamers.length} />
       <main>
         <StreamersGrid streamers={[...onlineStreamers, ...offlineStreamers]} />
       </main>

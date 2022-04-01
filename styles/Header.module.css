@@ -1,34 +1,46 @@
 .header {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 1rem 0;
   margin-top: 0.5rem;
   margin-bottom: 2rem;
+  max-width: 768px;
 }
 
 .header__title {
-  font-size: clamp(2rem, 4vw, 4rem);
+  font-size: clamp(1.6rem, 3vw, 3rem);
   text-transform: uppercase;
   font-family: Sora, sans-serif;
-  text-align: center;
+  text-align: left;
   color: #ffffff;
   line-height: 1.375;
   margin-bottom: 1rem;
 }
 
+.header__liveCount {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  color: #ffffff;
+  display: inline-block;
+  padding: 0.25rem 1rem;
+  border-radius: 0.25rem;
+  background-color: #9146ff;
+  text-align: left;
+  line-height: 1.375;
+  max-width: 800px;
+  margin-bottom: 2rem;
+}
+
 .header__subtitle {
   font-size: clamp(1.5rem, 2vw, 2rem);
   color: #ffffff;
-  text-align: center;
+  text-align: left;
   line-height: 1.375;
   max-width: 800px;
-  margin: auto;
   margin-bottom: 2rem;
 }
 
 .header__subtitleBottom {
   font-size: 1.2rem;
   color: #ffffff;
-  text-align: center;
+  text-align: left;
   line-height: 1.375;
   max-width: 800px;
   margin: auto;
