@@ -20,7 +20,7 @@ export default function Index({ onlineStreamers, offlineStreamers }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const onlineStreamers = await Contentful.getOnlineStreamers();
   const offlineStreamers = await Contentful.getOfflineStreamers();
 
@@ -29,6 +29,5 @@ export async function getStaticProps() {
       onlineStreamers,
       offlineStreamers,
     },
-    revalidate: 1,
   };
 }
