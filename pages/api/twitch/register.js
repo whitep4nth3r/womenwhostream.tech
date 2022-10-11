@@ -4,9 +4,9 @@ import Contentful from "@lib/Contentful";
 export default async function handler(req, res) {
   try {
     // authorise
-    if (
-      req.headers["whst-subscriptionkey"] !== process.env.API_SUBSCRIPTION_KEY
-    ) {
+    console.log("Calling register!");
+
+    if (req.headers["whst-subscriptionkey"] !== process.env.API_SUBSCRIPTION_KEY) {
       res.status(401).json();
       return;
     }
