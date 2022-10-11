@@ -3,6 +3,8 @@ import Contentful from "@lib/Contentful";
 
 export default async (req, res) => {
   try {
+    console.log("Trying refreshall!");
+
     // authorise
     if (req.headers["whst-subscriptionkey"] !== process.env.API_SUBSCRIPTION_KEY) {
       res.status(401).json();
@@ -34,6 +36,7 @@ export default async (req, res) => {
     }
 
     res.status(200).send();
+
     return;
   } catch (error) {
     console.log(error);
