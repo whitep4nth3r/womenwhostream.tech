@@ -9,6 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@netlify/plugin-nextjs": "^4.17.1-api-routes.0",
     "contentful-management": "^10.14.0",
     "dotenv": "^16.0.2",
     "next": "^12.3.1",
